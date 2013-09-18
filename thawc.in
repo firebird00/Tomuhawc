@@ -1,0 +1,12 @@
+twist 0
+ntor  1
+side  15
+off   0
+r0    1.e-3
+r1    0.4
+nfix  25
+acc   1.e-7
+del   1.e-7
+eps   1.e-6
+nulc  5.e-9
+skip  2

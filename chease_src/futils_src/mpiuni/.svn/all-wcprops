@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/mpiuni
+END
+mpi_stubsf.f
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/mpiuni/mpi_stubsf.f
+END
+mpif.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/mpiuni/mpif.h
+END
+Makefile.mac
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/mpiuni/Makefile.mac
+END
+second.c
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/mpiuni/second.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/mpiuni/Makefile
+END

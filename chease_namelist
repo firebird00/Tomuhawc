@@ -1,0 +1,31 @@
+***
+*** Output from Profile
+***
+***
+&EQDATA
+NEQDSK=0,
+NSURF = 6,
+NPPFUN = 4,
+NFUNC = 4,
+NSTTP = 1,
+RC = 1.,
+NTMF0 = 0,
+NRSCAL = 1,
+NEGP = 0,
+NER = 2,
+NBAL = 0,
+NOPT = 0,
+NVERBOSE = 1,
+NS = 60,
+NT = 120,
+NPSI = 60,
+NTNOVA = 120
+NIDEAL = 6,
+NRBOX = 257,
+NZBOX = 257,
+R0EXP = 10.,
+B0EXP = 2.5,
+NCSCAL = 1,
+CSSPEC = 0.,
+QSPEC = 1.050000,
+&END

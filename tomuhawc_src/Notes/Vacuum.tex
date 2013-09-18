@@ -1,0 +1,226 @@
+\input epsf
+\input rotate
+%\documentstyle[bolditalic,prb,aps]{revtex}
+\documentclass[12pt,prb,aps,notitlepage]{revtex4-1}
+\usepackage{amssymb}
+\usepackage{amsmath}
+%\documentstyle[bolditalic,prb,aps,12pt]{revtex}
+\newcommand {\ltapp} {\stackrel {_{\normalsize<}}{_{\normalsize \sim}}}
+\newcommand {\gtapp} {\stackrel {_{\normalsize>}}{_{\normalsize \sim}}}
+\usepackage[usenames]{color} %package for making colour text
+\usepackage[T1]{fontenc} %generates high-quality output
+\usepackage{ae,aecompl}  %vector fonts
+\newcommand {\bpi} {\mbox{\boldmath$\Pi$}}
+\newcommand {\bxi} {\mbox{\boldmath$\xi$}}
+\newcommand {\bPsi} {\mbox{\boldmath$\Psi$}}
+\newcommand {\bDelta} {\mbox{\boldmath$\Delta$}}
+\newcommand {\bGamma} {\mbox{\boldmath$\Gamma$}}
+
+\begin{document}
+\section{Vacuum Boundary Condition}
+\subsection{Toroidal Coordinates}
+Right-handed orthogonal curvilinear coordinates: $\eta$, $\mu$, $\phi$. Here, $\phi$ is toroidal angle.
+\begin{align}
+R &= \frac{\sinh\mu}{\cosh\mu-\cos\eta},\\[0.5ex]
+Z &= \frac{\sin\eta}{\cosh\mu-\cos\eta},\\[0.5ex]
+d_1 &= [(R+1)^2+Z^{\,2}]^{1/2},\\[0.5ex]
+d_2&= [(R-1)^2+Z^{\,2}]^{1/2},\\[0.5ex]
+\cosh\mu &= \frac{1}{2}\left(\frac{d_1}{d_2}+\frac{d_2}{d_1}\right),\\[0.5ex]
+\cos\eta &= \left(\frac{d_1^{\,2} + d_2^{\,2}-4}{2\,d_1\,d_2}\right).
+\end{align}
+Scale factors:
+\begin{align}
+h_\eta &= h_\mu = h = \frac{1}{\cosh\mu-\cos\eta},\\[0.5ex]
+h_\phi &= R = \frac{\sinh\mu}{\cosh\mu-\cos\eta}.
+\end{align}
+
+\subsection{Magnetic Perturbation}
+\begin{equation}
+\delta{\bf B} = {\rm i}\,\nabla V,
+\end{equation}
+where
+\begin{equation}
+\nabla^2 V = 0.
+\end{equation}
+Let
+\begin{equation}
+V(\eta,\mu,\phi) = \hat{V}(\eta,\mu)\,{\rm e}^{-{\rm i}\,n\,\phi},
+\end{equation}
+and
+\begin{equation}
+\delta\hat{\bf B} = {\rm i }\,\nabla\hat{V}.
+\end{equation}
+So,
+\begin{align}
+\delta\hat{B}_\eta &= \frac{{\rm i}}{h}\,\frac{\partial\hat{V}}{\partial\eta},\\[0.5ex]
+\delta\hat{B}_\mu&= \frac{{\rm i}}{h}\,\frac{\partial\hat{V}}{\partial\mu},\\[0.5ex]
+\delta\hat{B}_\phi &= \frac{n}{R}\,\hat{V}.
+\end{align}
+
+\subsection{Current Sheet}
+Suppose that there is a current sheet at $\mu=\mu_w$. Let
+\begin{equation}
+\delta\hat{\bf J} = \int_{\mu_{w-}}^{\mu_{w+}}\delta\hat{\bf j}\,h\,d\mu,
+\end{equation}
+where
+\begin{equation}
+\delta\hat{\bf j} = \nabla\times \delta\hat{\bf B}.
+\end{equation}
+Follows that
+\begin{align}
+\delta\hat{J}_\eta &= [\delta \hat{B}_\phi]_{\mu_{w-}}^{\mu^{w+}} = \frac{n}{R}\,[\hat{V}]_{\mu_{w-}}^{\mu_{w+}},\\[0.5ex]
+\delta\hat{J}_\mu &=0,\\[0.5ex]
+\delta\hat{J}_\phi &=  -[\delta \hat{B}_\eta]_{\mu_{w-}}^{\mu^{w+}} =- \frac{{\rm i}}{h}\left[\frac{\partial\hat{V}}{\partial\eta}\right]_{\mu_{w-}}^{\mu_{w+}}.
+\end{align}
+Of course,
+\begin{equation}
+\left[\frac{\partial\hat{V}}{\partial\mu}\right]_{\mu_{w-}}^{\mu_{w+}}=0.
+\end{equation}
+
+\subsection{Toroidal Torque}
+Now,
+\begin{equation}
+\overline{(\delta {\bf J}\times \delta{\bf B})_\phi} = \overline {\delta J_\eta\,\delta B_\mu}
+=-\frac{{\rm i}\,n}{2\,R\,h}\left\{[\hat{V}]\,\frac{\partial\hat{V}^\ast}{\partial\mu} - [\hat{V}^\ast]\,\frac{\partial\hat{V}}{\partial\mu}\right\}.
+\end{equation}
+Thus, net toroidal torque acting on sheet is
+\begin{equation}
+\hat{T}_\phi = 2\pi\oint R\,\overline{(\delta {\bf J}\times \delta{\bf B})_\phi}\,h\,R\,d\eta= -{\rm i}\,n\,\pi\oint R\left\{[\hat{V}]\,\frac{\partial\hat{V}^\ast}{\partial\mu} - [\hat{V}^\ast]\,\frac{\partial\hat{V}}{\partial\mu}\right\}d\eta.
+\end{equation}
+Let
+\begin{equation}
+z = \cosh\mu.
+\end{equation}
+Follows that 
+\begin{equation}
+\hat{T}_\phi = -{\rm i}\,n\,\pi\,(z^2-1)\oint (z-\cos\eta)^{-1}\left\{[\hat{V}]\,\frac{\partial\hat{V}^\ast}{\partial z} - [\hat{V}^\ast]\,\frac{\partial\hat{V}}{\partial z}\right\}d\eta.
+\end{equation}
+Now,
+\begin{align}
+[\hat{V}] &= \hat{V}_+ - \hat{V}_-,\\[0.5ex]
+\frac{\partial \hat{V}_+}{\partial\mu}&= \frac{\partial \hat{V}_-}{\partial\mu}.
+\end{align}
+So,
+\begin{equation}
+\hat{T}_\phi = -{\rm i}\,n\,\pi\,(z^2-1)\oint (z-\cos\eta)^{-1}\left\{\hat{V}_+\,\frac{\partial \hat{V}_+^\ast}{\partial z}- \hat{V}_+^\ast\,\frac{\partial\hat{V_+}}{\partial z}- \hat{V}_-\,\frac{\partial\hat{V}_-^\ast}{\partial z}+\hat{V}_-^\ast\,\frac{\partial\hat{V_-}}{\partial z}\right\}d\eta.
+\end{equation}
+Let
+\begin{equation}
+\hat{V}(z,\eta) = (z-\cos\eta)^{1/2}\,v(z,\eta).
+\end{equation}
+It follows that
+\begin{equation}
+\hat{T}_\phi = -{\rm i}\,n\,\pi\,(z^2-1)\oint\left\{v_+\,\frac{\partial v_+^\ast}{\partial z}-v_+^\ast\,\frac{\partial v_+}{\partial z}- v_-\,\frac{\partial v_-^\ast}{\partial z}+v_-^\ast\,\frac{\partial v_-}{\partial z}\right\}d\eta.
+\end{equation}
+Let
+\begin{equation}
+v(z,\eta) = \sum_m v_m(z)\,\cos(m\,\eta).
+\end{equation}
+It follows that
+\begin{equation}
+\hat{T}_\phi = -{\rm i}\,n\,\pi^2\,(z^2-1)\sum_m\left\{v_{m+}\,\frac{dv_{m+}^\ast}{dz} - v_{m+}^\ast\,\frac{dv_{m+}}{dz}
+-v_{m-}\,\frac{dv_{m-}^\ast}{dz}+v_{m-}^\ast\,\frac{dv_{m-}}{dz}\right\}.
+\end{equation}
+
+If
+\begin{align}
+v_{m+} &= p_m\,P_{m-1/2}^n(z)+ q_m\,Q_{m-1/2}^n(z),\\[0.5ex]
+v_{m-} &= r_m\,P_{m-1/2}^n(z),
+\end{align}
+then
+\begin{equation}
+\hat{T}_\phi = -{\rm i}\,n\,\pi^2\,(z^2-1)\sum_m (q_m\,p_m^\ast-q_m^\ast\,p_m)\left[
+\frac{dP_{m-1/2}^n}{dz}\, Q_{m-1/2}^n - P_{m-1/2}^n\,\frac{dQ_{m-1/2}^n}{dz}\right].
+\end{equation}
+However,
+\begin{equation}
+\frac{dP_{m-1/2}^n}{dz}\, Q_{m-1/2}^n - P_{m-1/2}^n\,\frac{dQ_{m-1/2}^n}{dz}= \frac{\Gamma(m+1/2+n)}{\Gamma(m+1/2-n)}\,\frac{(-1)^n}{1-z^2},
+\end{equation}
+so
+\begin{align}
+\hat{T}_\phi &= {\rm i}\,n\,\pi^2\,(-1)^n\sum_m (q_m\,p_m^\ast-q_m^\ast\,p_m)\,\frac{\Gamma(m+1/2+n)}{\Gamma(m+1/2-n)}\nonumber\\[0.5ex]
+&= -2\,n\,\pi^2\,(-1)^n\sum_m {\rm Im}(q_m\,p_m^\ast)\,\frac{\Gamma(m+1/2+n)}{\Gamma(m+1/2-n)}.
+\end{align}
+Thus, the torque on the plasma is $T_\phi = -\hat{T}_\phi$, giving
+\begin{equation}
+T_\phi =2\,n\,\pi^2\,(-1)^n\sum_m {\rm Im}(q_m\,p_m^\ast)\,\frac{\Gamma(m+1/2+n)}{\Gamma(m+1/2-n)}.
+\end{equation}
+
+\subsection{Matching to Vacuum Solution}
+In vacuum the solution vector $\tilde{\bf Y}_k^e$ has the expansion
+\begin{equation}
+\hat{V}_k^e = \sum_j p_{k,j}^e\,P_j(\mu,\eta),
+\end{equation}
+where
+\begin{equation}
+P_j(\mu,\eta) =(\cosh\mu-\cos\eta)^{1/2}\,P_{m_j-1/2}^n(\cosh\mu)\,\cos(m_j\,\eta).
+\end{equation}
+Likewise, the solution vector $\tilde{\bf Y}_k^o$ has the expansion
+\begin{equation}
+\hat{V}_k^o = \sum_j p_{k,j}^o\,P_j(\eta,\mu).
+\end{equation}
+Finally, the $\tilde{\bf Y}^x$ solution vector has the expansion
+\begin{equation}
+\hat{V}^x = \sum_j \left[p_j^x\,P_j(\eta,\mu)+ q_j^x\,Q_j(\eta,\mu)\right],
+\end{equation}
+where
+\begin{equation}
+Q_j(\mu,\eta) =(\cosh\mu-\cos\eta)^{1/2}\,Q_{m_j-1/2}^n(\cosh\mu)\,\cos(m_j\,\eta).
+\end{equation}
+The vacuum error-field has the expansion
+\begin{equation}
+\hat{V}^v = \sum_j q_j^x\,Q_j(\eta,\mu).
+\end{equation}
+
+The
+general solution vector
+is
+\begin{equation}
+{\bf Y} = \sum_k ({\mit\Psi}_k^e\,{\bf Y}_k^e + {\mit\Psi}_k^o\,{\bf Y}_k^o) + {\bf Y}^x,
+\end{equation}
+and has the expansion
+\begin{equation}
+\hat{V} = \sum_k\left({\mit\Psi}_k^e\,\hat{V}_k^e + {\mit\Psi}_k^o\,\hat{V}_k^o\right) + \hat{V}_x.
+\end{equation}
+It follows that
+\begin{equation}
+\hat{V} = \sum_j (p_j\,P_j+q_j\,Q_j),
+\end{equation}
+where 
+\begin{align}
+p_j &= p_j^x + \sum_k({\mit\Psi}_k^e\,p_{k,j}^e+ {\mit\Psi}_k^o\,p_{k,j}^o),\\[0.5ex]
+q_j&= q_j^x.
+\end{align}
+Thus, 
+\begin{equation}
+{\rm Im}(q_j\,p_j^\ast)={\rm Im}\sum_k({\mit\Psi}_k^{e\,\ast}\,p_{k,j}^{e\,\ast}\,q_j^x + {\mit\Psi}_k^{o\,\ast}\,p_{k,j}^{o\,\ast}\,q_j^x).
+\end{equation}
+Here, we have assumed that
+\begin{equation}
+{\rm Im}(p_j^{x\,\ast}\,q_j^x)=0.
+\end{equation}
+Thus, 
+\begin{equation}
+T_\phi = 2\,n\,\pi^2\,(-1)^n\,{\rm Im}\sum_k\sum_j\,({\mit\Psi}_k^{e\,\ast}\,p_{k,j}^{e\,\ast}\,q_j^x + {\mit\Psi}_k^{o\,\ast}\,p_{k,j}^{o\,\ast}\,q_j^x)\frac{\Gamma(m_j+1/2+n)}{\Gamma(m_j+1/2-n)}.
+\end{equation}
+However,
+\begin{equation}
+T_\phi = - 2\,n\,\pi^2\,{\rm Im}\sum_k({\mit\Psi}_k^{e\,\ast}\chi_k^e + {\mit\Psi}_k^{o\,\ast}\,\chi_k^o).
+\end{equation}
+It follows that
+\begin{align}
+\chi_k^e &= (-1)^{n+1}\sum_j p_{k,j}^{e\,\ast}\,q_j^x\,\frac{\Gamma(m_j+1/2+n)}{\Gamma(m_j+1/2-n)},\\[0.5ex]
+\chi_k^o &= (-1)^{n+1}\sum_j p_{k,j}^{o\,\ast}\,q_j^x\,\frac{\Gamma(m_j+1/2+n)}{\Gamma(m_j+1/2-n)}.
+\end{align}
+
+Finally, let
+\begin{equation}
+\hat{V}^v = \sum_j q_j^v\, (-1)^{n+1}\,\frac{\Gamma(m_j+1/2-n)}{\Gamma(m_j+1/2+n)}\,Q_j(\mu,\eta).
+\end{equation}
+It follows that
+\begin{align}
+\chi_k^e &= \sum_j p_{k,j}^{e\,\ast}\,q_j^v,\\[0.5ex]
+\chi_k^o &= \sum_j p_{k,j}^{o\,\ast}\,q_j^v.
+\end{align}
+
+\end{document}

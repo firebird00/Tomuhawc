@@ -1,0 +1,6 @@
+DASPCT   0.
+DELONG   0.
+DTRIANG  0.
+DQC      0.
+DQB      0.
+DBETAN   0.

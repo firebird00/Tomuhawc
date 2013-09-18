@@ -1,0 +1,172 @@
+\input epsf
+\input rotate
+%\documentstyle[bolditalic,prb,aps]{revtex}
+\documentclass[12pt,prb,aps,notitlepage]{revtex4-1}
+\usepackage{amssymb}
+\usepackage{amsmath}
+%\documentstyle[bolditalic,prb,aps,12pt]{revtex}
+\newcommand {\ltapp} {\stackrel {_{\normalsize<}}{_{\normalsize \sim}}}
+\newcommand {\gtapp} {\stackrel {_{\normalsize>}}{_{\normalsize \sim}}}
+\usepackage[usenames]{color} %package for making colour text
+\usepackage[T1]{fontenc} %generates high-quality output
+\usepackage{ae,aecompl}  %vector fonts
+\newcommand {\bpi} {\mbox{\boldmath$\Pi$}}
+\newcommand {\bxi} {\mbox{\boldmath$\xi$}}
+\newcommand {\bPsi} {\mbox{\boldmath$\Psi$}}
+\newcommand {\bDelta} {\mbox{\boldmath$\Delta$}}
+\newcommand {\bGamma} {\mbox{\boldmath$\Gamma$}}
+
+\begin{document}
+\subsection{Behavior in Vicinity of  Rational Surface}\label{snus}
+Let there be $K$ rational surfaces in the plasma. Suppose that the $k$th surface has the flux-surface label $r_k$, and the resonant
+poloidal mode number $m_k$, where $q(r_k)=m_k/n$, for $k=1,K$.
+
+\subsubsection{General Case}
+Consider the solution of the outer equations  in the
+vicinity of the $k$th surface. Let  $x=r-r_k$.  The most general small-$|x|$ solution of the outer equations
+can be shown to take the form
+\begin{align}\label{ex1}
+\psi_{j}(x)=&\, A_{L\,k}^\pm \,|x|^{\nu_{L\,k}}\,(1+\lambda_{L\,k}\,x+\cdots) + A_{S\,k}^{\pm}\,{\rm sgn}(x)\,|x|^{\nu_{S\,k}}\,(1+\cdots) + A_{C\,k}\,x\,(1+\cdots),\\[0.5ex]
+Z_{j}(x)=&\, A_{L\,k}^\pm\,|x|^{\nu_{L\,k}}(b_{L\,k}  + \gamma_{L\,k}\,x+\cdots) + A_{S\,k}^{\pm}\,{\rm sgn}(x)\,|x|^{\nu_{S\,k}}\,(b_{S\,k}+\cdots)\nonumber\\[0.5ex]
+& + B_{C\,k}\,x\,(1+\cdots)\label{ex2}
+\end{align}
+if $m_j=m_k$, and 
+\begin{align}\label{ex3}
+\psi_{j}(x)=&\, A_{L\,k}^\pm\,|x|^{\nu_{L\,k}}\,(a_{kj}+\cdots)  + \bar{\psi}_{kj}\,(1+\cdots),\\[0.5ex]
+Z_{j}(x)=&\, A_{L\,k}^\pm\,|x|^{\nu_{L\,k}}\,(b_{kj}+\cdots) + \bar{Z}_{kj}\,(1+\cdots)\label{ex4}
+\end{align}
+if $m_j\neq m_k$. Moreover, the superscripts $\phantom{x}^+$ and $\phantom{x}^-$ correspond  to $x>0$ and $x<0$, respectively. Here,
+\begin{align}
+\nu_{L\,k}&= \frac{1}{2}-\sqrt{D_{I\,k}},\\[0.5ex]
+\nu_{S\,k} &=  \frac{1}{2}+\sqrt{D_{I\,k}},\\[0.5ex]
+D_{I\,k} &= \frac{1}{4}+L_{0\,k}\,P_{0\,k},\\[0.5ex]
+L_{0\,k} &=-\left(\frac{L_{kk}}{m_k\,s}\right)_{r_k},\\[0.5ex]
+P_{0\,k} &= -\left(\frac{P_{kk}}{m_k\,s}\right)_{r_k}.
+\end{align}
+Furthermore, 
+\begin{align}
+b_{L\,k} &= \frac{\nu_{L\,k}}{L_{0\,k}},\\[0.5ex]
+b_{S\,k} &= \frac{\nu_{S\,k}}{L_{0\,k}},\\[0.5ex]
+A_{C\,k} &= - \frac{1}{r_k\,P_{0\,k}}\sum_{j=1,J}^{m_j\neq m_k}\frac{1}{m_j-m_k}\left(N_{k\,j}\,\bar{Z}_{kj}+ P_{kj}\,\bar{\psi}_{kj}\right)_{r_k},\label{ex12}\\[0.5ex]
+B_{C\,k} &= - \frac{1}{r_k\,L_{0\,k}}\sum_{j=1,J}^{m_j\neq m_k}\frac{1}{m_j-m_k}\left(L_{kj}\,\bar{Z}_{kj}+ M_{kj}\,\bar{\psi}_{kj}\right)_{r_k}+\frac{A_{C\,k}}{L_{0\,k}},\label{ex13}\\[0.5ex]
+\lambda_{L\,k} &= \frac{1}{2\,r_k}\left[\frac{P_{1\,k}\,L_{0\,k}}{\nu_{L\,k}} + T_{1\,k} + \nu_{L\,k}\left(\frac{L_{1\,k}}{L_{0\,k}}-2\right)\right]_{r_k}\nonumber\\[0.5ex]&
+-\frac{1}{(m_k\,s)_{r_k}}\,\frac{1}{r_k\,\nu_{L\,k}}\sum_{j=1,J}^{m_j\neq m_k}\frac{1}{m_j-m_k}\left(P_{kj}\,L_{kj}-M_{kj}\,N_{kj}\right)_{r_k},\label{ex14}\\[0.5ex]
+\gamma_{L\,k} &=\frac{1}{2\,r_k}\left[(1+\nu_{L\,k})\left(\frac{P_{1\,k}}{\nu_{L\,k}}+\frac{T_{1\,k}}{L_{0\,k}}-\frac{\nu_{L\,k}}{L_{0\,k}}\right)+
+P_{0\,k}\left(\frac{L_{1\,k}}{L_{0\,k}}-1\right)\right]_{r_k}\nonumber\\[0.5ex]
+&-\frac{1}{(m_k\,s)_{r_k}}\,\frac{1}{r_k\,L_{0\,k}}\sum_{j=1,J}^{m_j\neq m_k}\frac{1}{m_j-m_k}\left(P_{kj}\,L_{kj}-M_{kj}\,N_{kj}\right)_{r_k},\label{ex15}\\[0.5ex]
+a_{kj}&= \frac{1}{(m_k\,s)_{r_k}}\left(\frac{N_{kj}}{\nu_{L\,k}}-\frac{L_{kj}}{L_{0\,k}}\right)_{r_k},\\[0.5ex]
+b_{kj}&= \frac{1}{(m_k\,s)_{r_k}}\left(\frac{M_{kj}}{L_{0\,k}}-\frac{P_{kj}}{\nu_{L\,k}}\right)_{r_k},
+\end{align}
+and
+\begin{align}
+L_{1\,k} &= \lim_{x\rightarrow 0}\left(\frac{L_{kk}}{m_k-n\,q}\right)-\frac{r_k\,L_{0\,k}}{x},\\[0.5ex]
+P_{1\,k}&=  \lim_{x\rightarrow 0}\left(\frac{P_{kk}}{m_k-n\,q}\right) -\frac{r_k\,P_{0\,k}}{x},\\[0.5ex]
+T_{1\,k} &= \lim_{x\rightarrow 0}\left(\frac{-n\,q\,s}{m_k-n\,q}\right)-\frac{r_k}{x}.
+\end{align}
+The parameters $A_{S\,k}$ and $A_{L\,k}$ are identified from the numerical solution of the outer equations in the
+vicinity of the  rational surface 
+by taking the limits
+\begin{align}
+\bar{\psi}_{kj} =&\, \psi_{j}(r_k+\delta) - a_{kj}\,\psi_k(r_k+\delta),\\[0.5ex]
+\bar{Z}_{kj}=&\, Z_{j}(r_k+\delta) - b_{kj}\,\psi_k(r_k+\delta),\\[0.5ex]
+A_{S\,k}^\pm =&\, \pm\frac{Z_k(r_k\pm|\delta|)- b_{L\,k}\,\psi_k(r_k\pm|\delta|)}{(b_{S\,k}-b_{L\,k})\,|\delta|^{\nu_{S\,k}}}\nonumber\\[0.5ex]& -\frac{\left[(B_{C\,k}-b_{L\,k}\,A_{C\,k})+(\gamma_{L\,k}-b_{L\,k}\,\lambda_{L\,k})\,\psi_k(r_k\pm |\delta|)\right]|\delta|}{(b_{S\,k}-b_{L\,k})\,|\delta|^{\nu_{S\,k}}},\\[0.5ex]
+A_{L\,k}^\pm =&\, \frac{\psi_k(r_k\pm|\delta|)\mp A_{S\,k}^\pm |\delta|^{\nu_{S\,k}}\mp A_{C\,k}\,|\delta|}{(1\pm |\delta|\,\lambda_{L\,k})\,|\delta|^{\nu_{L\,k}}}
+\end{align}
+as $|\delta|\rightarrow 0$.
+
+\subsubsection{Zero Pressure Limit}
+In the limit $D_{I\,k}\rightarrow 1/4$, the indices $\nu_{L\,k}$ and $\nu_{S\,k}$ approach $0$ and $1$, respectively. Hence, $|x|^{\nu_{L\,k}}\rightarrow 1+\nu_{L\,k}\,\ln |x|$, and $|x|^{\nu_{S\,k}}\rightarrow |x|\,(1-\nu_{L\,k}\,\ln |x|)$. In this situation, Eqs.~(\ref{ex3}) and (\ref{ex4})  become
+\begin{align}\label{ex25}
+\psi_j(x) &= A_{L\,k}^\pm\,(\hat{a}_{kj}\,\ln|x|+\cdots) + \bar{\psi}_{kj}'\,(1+\cdots),\\[0.5ex]
+Z_j(x) &= A_{L\,k}^\pm\,(\hat{b}_{kj}\,\ln|x|+\cdots) + \bar{Z}_{kj}'\,(1+\cdots),\label{ex26}
+\end{align}
+where
+\begin{align}
+\hat{a}_{kj} &= \nu_{L\,k}\,a_{kj} \rightarrow \frac{\nu_{L\,k}}{(m_k\,s)_{r_k}}\left(\hat{N}_{kj}-\frac{L_{kj}}{L_{0\,k}}\right)_{r_k},\\[0.5ex]
+\hat{b}_{kj} &= \nu_{L\,k}\,b_{kj} \rightarrow \frac{\nu_{L\,k}}{(m_k\,s)_{r_k}}\left(\frac{M_{kj}}{L_{0\,k}}-\hat{P}_{jk}\right)_{r_k},
+\end{align}
+and
+\begin{align}
+\bar{\psi}_{kj}' &= \bar{\psi}_{kj} + A_{L\,k}^\pm\,a_{kj},\\[0.5ex]
+\bar{Z}_{kj}' &=  \bar{Z}_{kj} + A_{L\,k}^\pm\,b_{kj}.
+\end{align}
+Here, the ratios
+\begin{align}
+\hat{N}_{kj} &= \frac{N_{kj}}{\nu_{L\,k}},\\[0.5ex]
+\hat{P}_{kj} &= \frac{P_{kj}}{\nu_{L\,k}},
+\end{align}
+remain finite as $\nu_{L\,k}\rightarrow 0$. 
+It follows from Eqs.~(\ref{ex12}) and (\ref{ex13}) that
+\begin{align}
+A_{C\,k} &\rightarrow \frac{L_{0\,k}}{r_k}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(\hat{N}_{kj}\,\bar{Z}_{kj}' + \hat{P}_{kj}\,\bar{\psi}_{kj}'\right)_{r_k}\nonumber\\[0.5ex]
+&\phantom{\rightarrow}+\frac{A_{L\,k}^\pm}{(m_k\,s)_{r_k}}\,\frac{1}{r_k}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(\hat{P}_{kj}\, L_{kj}- M_{kj}\,\hat{N}_{kj}\right)_{r_k},\\[0.5ex]
+B_{C\,k} &\rightarrow- \frac{1}{r_k\,L_{0\,k}}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(L_{kj}\,\bar{Z}_{kj}' + M_{kj}\,\bar{\psi}_{kj}'\right)_{r_k}\nonumber\\[0.5ex]
+&\phantom{\rightarrow}+\frac{1}{r_k}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(\hat{N}_{kj}\, \bar{Z}_{kj}'+ \hat{P}_{kj}\,\bar{\psi}_{kj}'\right)_{r_k},
+\end{align}
+and from (\ref{ex14}) and (\ref{ex15}) that
+\begin{align}
+\lambda_{L\,k}&\rightarrow \frac{P_{1\,k}\,L_{0\,k}}{2\,r_k\,\nu_{L\,k}} -
+\frac{1}{(m_k\,s)_{r_k}}\,\frac{1}{r_k}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(\hat{P}_{kj}\, L_{kj}- M_{kj}\,\hat{N}_{kj}\right)_{r_k}+ \frac{T_{1\,k}}{2\,r_k},\\[0,5ex]
+\gamma_{L\,k}&\rightarrow \frac{P_{1\,k}}{2\,r_k\,\nu_{L\,k}}+\frac{1}{2\,r_k}\left(
+P_{1\,k} + \frac{T_{1\,k}}{L_{0\,k}} \right).
+\end{align}
+Equations~(\ref{ex1}) and (\ref{ex2}) yield
+\begin{align}
+\psi_j(x)&\rightarrow A_{L\,k}^{\pm}\left(1+\nu_{L\,k}\,\ln|x| + \hat{\lambda}_{L\,k}'\,x\,\ln|x|+\cdots\right)
++A_{S\,k}\,x\left(1+\cdots\right) \nonumber\\[0.5ex]
+&\phantom{rightarrow}+x \left(A_{L\,k}^\pm\,\lambda_{L\,k} + A_{C\,k}\right),\\[0.5ex]
+Z_j(x)&\rightarrow A_{L\,k}^\pm\left(\hat{b}_{L\,k}+\hat{\gamma}_{L\,k}'\,x\,\ln|x|+\cdots\right)
++A_{S\,k}^{\pm}\,x\left(\hat{b}_{S\,k}+\cdots\right)\nonumber\\[0.5ex]
+&\phantom{\rightarrow} +x\left(A_{L\,k}^\pm\,\gamma_{L\,k} + B_{C\,k}\right),
+\end{align}
+where
+\begin{align}
+\hat{\lambda}_{L\,k}'&=\nu_{L\,k}\,\lambda_{L\,k}\rightarrow \frac{P_{1\,k}\,L_{0\,k}}{2\,r_k},\\[0.5ex]
+\hat{\gamma}_{L\,k}' &= \nu_{L\,k}\,\gamma_{L\,k}\rightarrow \frac{P_{1\,k}}{2\,r_k},\\[0.5ex]
+\hat{b}_{L\,k} &= \frac{\nu_{L\,k}}{L_{0\,k}},\\[0.5ex]
+\hat{b}_{S\,k} &= \frac{1}{L_{0\,k}}.
+\end{align}
+Now,
+\begin{align}\label{e41}
+A_{L\,k}^\pm\,\lambda_{L\,k} + A_{C\,k} &= A_{L\,k}^\pm\left(\frac{P_{1\,k}\,L_{0\,k}}{2\,r_k\,\nu_{L\,k}}
++\frac{T_{1\,k}}{2\,r_k}\right)\nonumber\\[0.5ex]&\phantom{+}+\frac{L_{0\,k}}{r_k}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(\hat{N}_{kj}\, \bar{Z}_{kj}'+ \hat{P}_{kj}\,\bar{\psi}_{kj}'\right)_{r_k},\\[0.5ex]
+L_{0\,k}\,(A_{L\,k}^\pm\,\gamma_{L\,k}+B_{C\,k}) &= (A_{L\,k}^\pm\,\lambda_{L\,k} + A_{C\,k})
++A_{L\,k}^\pm\,\hat{\lambda}_{L\,k}'\nonumber\\[0.5ex]
+&\phantom{+} - \frac{1}{r_k}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(L_{kj}\,\bar{Z}_{kj}' + M_{kj}\,\bar{\psi}_{kj}'\right)_{r_k}.
+\end{align}
+Let
+\begin{equation}\label{ex43}
+A_{S\,k}^\pm + L_{0\,k}\left(A_{L\,k}^\pm\,\gamma_{L\,k}+B_{C\,k}\right)= \hat{A}_{S\,k}^\pm.
+\end{equation}
+It follows that
+\begin{align}
+\psi_j(x)&\rightarrow A_{L\,k}^{\pm}\left[1+\nu_{L\,k}\,\ln|x| + \hat{\lambda}_{L\,k}'\,x\,(\ln|x|-x)+\cdots\right]
++\hat{A}_{S\,k}^\pm\,x\left(1+\cdots\right)\nonumber\\[0.5ex]
+&\phantom{\rightarrow} +\hat{A}_{C\,k}\,x\left(1+\cdots\right),\label{ex44}\\[0.5ex]
+Z_j(x)&\rightarrow A_{L\,k}^\pm\left(\hat{b}_{L\,k}+\hat{\gamma}_{L\,k}'\,x\,\ln|x|+\cdots\right)
++\hat{A}_{S\,k}^{\pm}\,x\left(\hat{b}_{S\,k}+\cdots\right),\label{ex45}
+\end{align}
+where
+\begin{equation}
+\hat{A}_{C\,k}= \frac{1}{r_k}\sum_{j=1,J}^{m_j\neq m_k}
+\frac{1}{m_j-m_k}\left(L_{kj}\,\bar{Z}_{kj}' + M_{kj}\,\bar{\psi}_{kj}'\right)_{r_k}.
+\end{equation}
+
+Expressions (\ref{ex25}), (\ref{ex26}),  (\ref{ex44}), and (\ref{ex45}) now contain no
+terms that blow up in the limit $\nu_{L\,k}\rightarrow 0 $. Thus, generally
+speaking, we would expect the asymptotic matching process to yield values of $A_{L\,k}^\pm$
+and $\hat{A}_{S\,k}^\pm$ that remain finite in this limit. 
+It, therefore, follows from Eq.~(\ref{e41})--(\ref{ex43})  that
+\begin{equation}
+A_{S\,k}^\pm \rightarrow - A_{L\,k}^\pm\,\frac{P_{1\,k}\,L_{0\,k}}{2\,r_k\,\nu_{L\,k}}.
+\end{equation}
+in the limit $\nu_{L\,k}\rightarrow 0$.
+
+\end{document}

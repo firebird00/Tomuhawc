@@ -1,0 +1,44 @@
+Asymptote scripts (see http://asymptote.sourceforge.net/)
+
+<filename>.asy
+Usage:	    ./asy <filename>
+Produces:   <filename>.eps
+..........................................................
+
+lmat.asy    ... plots elements of L-matrix (at r=a)
+mmat.asy    ... plots elements of M-matrix (at r=a)
+nmat.asy    ... plots elements of N-matrix (at r=a)
+pmat.asy    ... plots elements of P-matrix (at r=a)
+he.asy      ... plots log10(h) for tearing  parity mode vs r
+ho.asy      ... plots log10(h) for twisting parity mode vs r
+pme.asy     ... plots log10(Psi_max) for tearing  parity mode vs r
+pmo.asy     ... plots log10(Psi_max) for twisting parity mode vs r
+di.asy      ... plots tanh(D_I) vs r
+dr.asy      ... plots tanh(D_R) vs r
+ef.asy      ... plots E + F     vs r
+hh.asy      ... plots H         vs r
+et.asy      ... plots K E - G   vs r
+ft.asy      ... plots K F + G   vs r
+ht.asy      ... plots K H       vs r
+fa.asy      ... plots F_A       vs r
+fr.asy      ... plots F_R       vs r
+psi.asy     ... plots psi (primative) vs r 
+z.asy       ... plots Z (primative) vs r 
+psife.asy   ... plots psi (fully reconnected, tearing parity)  vs r
+psiue.asy   ... plots psi (unreconnected,     tearing parity)  vs r
+zfe.asy     ... plots Z   (fully reconnected, tearing parity)  vs r
+zue.asy     ... plots Z   (unreconnected,     tearing parity)  vs r
+psifo.asy   ... plots psi (fully reconnected, twisting parity) vs r
+psiuo.asy   ... plots psi (unreconnected,     twisting parity) vs r
+zfo.asy     ... plots Z   (fully reconnected, twisting parity) vs r
+zuo.asy     ... plots Z   (unreconnected,     twisting parity) vs r
+xie.asy     ... plots xi^e versus theta
+xio.asy     ... plots xi^o versus theta
+xiem.asy    ... plots Fourier harmonics of xi^e versus m
+xiom.asy    ... plots Fourier harmonics of xi^o versus m
+
+error       ... calculates optimum wall perturbation 
+error.asy   ... plots total optimum wall perturbation
+errorc.asy  ... plots cosine component of optimum wall perturbation
+errors.asy  ... plots sine component of optimum wall perturbation
+

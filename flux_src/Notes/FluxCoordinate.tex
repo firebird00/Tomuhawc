@@ -1,0 +1,101 @@
+\documentclass[12pt,prb,aps,notitlepage]{revtex4-1}
+\usepackage{epsf}
+\usepackage{rotate}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newcommand {\bxi} {\mbox{\boldmath$\xi$}}
+\newcommand {\bPsi} {\mbox{\boldmath$\Psi$}}
+\newcommand {\bDelta} {\mbox{\boldmath$\Delta$}}
+\newcommand {\bGamma} {\mbox{\boldmath$\Gamma$}}
+
+\begin{document}
+\title{Construction of Flux Coordinate System}
+\maketitle
+
+\section{Construction of Coordinate System}
+Let $R$, $\phi$, $Z$ be conventional right-handed cylindrical coordinates. Let us adopt
+a normalization scheme in which all lengths are normalized to $R_0$, all magnetic field-strengths to $B_0$, and all pressures to $B_0^{\,2}/\mu_0$. In the following, all quantities are assumed to be normalized. 
+We can write the equilibrium magnetic field in the form
+\begin{equation}
+{\bf B} = \nabla\phi\times \nabla\psi + g(\psi)\,\nabla\phi = \nabla[\phi-q(\psi)\,\theta]\times\nabla\psi,
+\end{equation}
+where the poloidal flux, $\psi(R,Z)$,  and the toroidal flux function, $g(\psi)$, are both given, and 
+\begin{equation}
+\nabla\psi\times\nabla\theta\cdot\nabla \phi = \frac{g}{q\,R^{\,2}}.
+\end{equation}
+The equilibrium is assumed to be up-down symmetric, so that $\psi(R,-Z)=\psi(R,Z)$ for all $R$ and $Z$. 
+Here, $\theta$ is a so-called  ``straight" poloidal angle, and $q(\psi)$ is the safety-factor. 
+Suppose that the magnetic axis (where $\psi_R=\psi_Z=0$) lies at $R=R_c$, $Z=0$. 
+Let ${\mit\Psi}(R,Z)=\psi(R,Z)/\psi_c$, where $\psi_c=\psi(R_c,0)$. 
+The previous equation implies that
+\begin{equation}
+\frac{d\theta}{dl} = \frac{g}{q}\,\frac{1}{|\psi_c|\,R\,\sqrt{{\mit\Psi}_R^{\,2}+{\mit\Psi}_Z^{\,2}}},
+\end{equation}
+where $l$ represents distance along a constant-${\mit\Psi}$ surface. The corresponding increments of $R$ and $Z$
+are
+\begin{align}
+dR &= -\frac{{\mit\Psi}_Z\,dl}{\sqrt{{\mit\Psi}_R^{\,2} + {\mit\Psi}_Z^{\,2}}},\\[0.5ex]
+dZ &= \frac{{\mit\Psi}_R\,dl}{\sqrt{{\mit\Psi}_R^{\,2} + {\mit\Psi}_Z^{\,2}}},
+\end{align}
+respectively.
+Since $\theta$ must increase by $2\pi$ in a circuit around a given flux surface, we can write
+\begin{equation}
+\frac{q({\mit\Psi})}{g({\mit\Psi})} = \frac{1}{2\pi\,|\psi_c|}\oint \frac{dl}{R\,\sqrt{{\mit\Psi}_R^{\,2}+{\mit\Psi}_Z^{\,2}}},
+\end{equation}
+which determines $q({\mit\Psi})$. We can then calculate $\theta$ from 
+\begin{align}
+\frac{dR}{d\theta} &= -|\psi_c|\,\frac{q({\mit\Psi})}{g({\mit\Psi})}\,R\,{\mit\Psi}_Z,\\[0.5ex]
+\frac{dZ}{d\theta} &= |\psi_c|\,\frac{q({\mit\Psi})}{g({\mit\Psi})}\,R\,{\mit\Psi}_R.
+\end{align}
+
+It is convenient to define a new flux-surface label, $r$, which is such that
+$r=0$ on the magnetic axis, $r=1$ at the plasma boundary, and
+\begin{equation}
+\nabla r\times \nabla\theta\cdot\nabla\phi = \frac{1}{\epsilon_\ast^{\,2}\,r\,R^{\,2}}.
+\end{equation}
+It follows that
+\begin{equation}
+\epsilon_\ast =\left( 2\,|\psi_c|\int_0^1\frac{q({\mit\Psi})}{g({\mit\Psi})}\,d{\mit\Psi}\right)^{1/2},
+\end{equation}
+and
+\begin{equation}
+r({\mit\Psi})= \left(\frac{2\,|\psi_c|}{\epsilon_\ast^{\,2}}\int_{\mit\Psi}^1 \frac{q({\mit\Psi}')}{g({\mit\Psi}')}\,d{\mit\Psi}'\right)^{1/2}.
+\end{equation}
+
+Let $R_r=\left.\partial R/\partial r\right|_\theta$, etc. It follows that
+\begin{align}
+\epsilon_\ast^{\,2}\,r\,R&= R_\theta\,Z_r-R_r\,Z_\theta,\\[0.5ex]
+|\nabla r|^{-2} &= \frac{\epsilon_\ast^{\,4}\,r^2\,R^{\,2}}{R_\theta^{\,2} + Z_\theta^{\,2}},\\[0.5ex]
+\frac{r\,\nabla r\cdot\nabla\theta}{|\nabla r|^{\,2}} &= -\frac{r\,(R_r\,R_\theta + Z_r\,Z_\theta)}{R_\theta^{\,2}+Z_\theta^{\,2}}.
+\end{align}
+
+\section{Data Required by {\sc TOMUHAWC}}
+All lengths in {\sc TOMUHAWC} are normalized to $\epsilon_\ast\,R_0$. 
+Let
+\begin{align}
+R^{\,2}&= \sum_{k=0,\infty} M^{(1)}_k(r)\,\cos(k\,\theta),\\[0.5ex]
+\epsilon_\ast^{\,-2}\,|\nabla r|^{\,-2}\,R^{\,-2}&= \sum_{k=0,\infty} M^{(2)}_k(r)\,\cos(k\,\theta),\\[0.5ex]
+\epsilon_\ast^{\,-2}\,|\nabla r|^{\,-2}&= \sum_{k=0,\infty} M^{(3)}_k(r)\,\cos(k\,\theta),\\[0.5ex]
+\epsilon_\ast^{\,-2}\,|\nabla r|^{\,-2}\,R^{\,2} &= \sum_{k=0,\infty} M^{(4)}_k(r)\,\cos(k\,\theta),\\[0.5ex]
+\epsilon_\ast^{\,-2}\,|\nabla r|^{\,-2}\,R^{\,4}  &= \sum_{k=0,\infty} M^{(5)}_k(r)\,\cos(k\,\theta),\\[0.5ex]
+(r\,\nabla r\cdot\nabla \theta)\, |\nabla r|^{\,-2}&= \sum_{k=1,\infty} M^{(6)}_k(r)\,\sin(k\,\theta),\\[0.5ex]
+(r\,\nabla r\cdot\nabla \theta)\, |\nabla r|^{\,-2}\,R^{\,2}&= \sum_{k=1,\infty} M^{(7)}_k(r)\,\sin(k\,\theta),\\[0.5ex]
+\epsilon_\ast^{\,2}\,|\nabla r|^{\,2}&= \sum_{k=0,\infty} M^{(8)}_k(r)\,\cos(k\,\theta),\\[0.5ex]
+R^{\,4}&= \sum_{k=0,\infty} M^{(9)}_k(r)\,\cos(k\,\theta).
+\end{align}
+The {\sc TOMUHAWC} code requires the $M^{(1)}_k(r)$, $M^{(2)}_k(r)$, $M^{(3)}_k(r)$, $M^{(4)}_k(r)$,
+$M^{(5)}_k(r)$, $M^{(6)}_k(r)$, and $M^{(7)}_k(r)$, as well as $M^{(8)}_0(r)$ and $M^{(9)}_0(r)$. The code also needs 
+$q(r)$, $dq(r)/dr$, and the following six profile
+functions:
+\begin{align}
+p_1(r) &= \epsilon_\ast^{\,2}\,r^{\,2},\\[0.5ex]
+p_2(r) &=\frac{dg}{d\psi},\\[0.5ex]
+p_3(r) &= \frac{q}{g}\,\frac{dP}{d\psi},\\[0.5ex]
+p_4(r) &= -\frac{d\ln(q/g)}{d\ln r},\\[0.5ex]
+p_5(r) & = \left(\epsilon_\ast\,r\,\frac{g}{q}\right)^2,\\[0.5ex]
+p_6(r) &= {\mit\Gamma}\,P,
+\end{align}
+where $P(r)$ is the pressure profile, and ${\mit\Gamma}$ the plasma ratio of specific heats. 
+All functions are required in the range $0\leq r\leq 1$. 
+
+\end{document}

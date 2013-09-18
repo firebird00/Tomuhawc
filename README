@@ -1,0 +1,39 @@
+Programs to solve toroidal tearing mode problem for
+up-down-symmetric tokamak equilibrium
+
+
+Executables
+-----------
+
+Name:			profile
+Source			profile_src
+Description:		finds CHEASE equilibrium with given qc, qa, betaN
+Input:			profile.in
+Output:			chease_namelist, *.out.1
+
+Name:			chease
+Source:			chease_src
+Description:		solves Grad-Shafranov equation
+Input:			chease_namelist
+Output:			EQDSK_COCOS_02.OUT 
+
+Name:			flux
+Source:			flux_src
+Description:		constructs Tomuhawc flux coordinate system for CHEASE equilibrium
+Input:			flux.in, EQDSK_COCOS_02.OUT
+Output:			Stage1/ Stage2/
+
+Name:			thawc
+Source:			tomuhawc_src
+Description:		calculates tearing/twisting stability matrix for CHEASE equilibrium
+Input:			thawc.in Stage2/
+Output:			Stage3/
+
+Name:			ggj
+Source:			ggj_src
+Description:		calculates Glasser-Greene-Johnson layer data
+Input:			Stage3/rational.out, Stage3/Delta.out
+Output:			Stage4/ggj.out		
+
+
+

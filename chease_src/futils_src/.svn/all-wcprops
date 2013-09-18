@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/CHEASE/!svn/ver/572/chease/trunk/src-f90/futils_src
+END
+Makefile.bgl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/Makefile.bgl
+END
+uniprog.f90
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/uniprog.f90
+END
+getarr.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/getarr.tpl
+END
+Makefile.bgp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/CHEASE/!svn/ver/572/chease/trunk/src-f90/futils_src/Makefile.bgp
+END
+cutils.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/cutils.c
+END
+cgetarr.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/cgetarr.tpl
+END
+putarrnd.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/putarrnd.tpl
+END
+zappend.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/zappend.tpl
+END
+cputarrnd.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/cputarrnd.tpl
+END
+Makefile.pleiades
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/CHEASE/!svn/ver/572/chease/trunk/src-f90/futils_src/Makefile.pleiades
+END
+Makefile.hpcff
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/Makefile.hpcff
+END
+futils.f90
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/futils.f90
+END
+getarrnd.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/getarrnd.tpl
+END
+append.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/append.tpl
+END
+buffer.f90
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/buffer.f90
+END
+cgetarrnd.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/cgetarrnd.tpl
+END
+cutils_bgl.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/cutils_bgl.c
+END
+Makefile_serial.mac
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/Makefile_serial.mac
+END
+putarr.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/putarr.tpl
+END
+counter.f90
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/counter.f90
+END
+Makefile_serial
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/Makefile_serial
+END
+Makefile.mac
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/Makefile.mac
+END
+Makefile.alcor
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/Makefile.alcor
+END
+getfile.f90
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/getfile.f90
+END
+uniproc.f90
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/uniproc.f90
+END
+Makefile.llnl
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/Makefile.llnl
+END
+cputarr.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/cputarr.tpl
+END
+vl.f90
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/CHEASE/!svn/ver/444/chease/trunk/src-f90/futils_src/vl.f90
+END

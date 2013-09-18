@@ -1,0 +1,65 @@
+Asymptote scripts (see http://asymptote.sourceforge.net/)
+
+<filename>.asy
+Usage:	    ./asy <filename>
+Produces:   <filename>.eps
+..........................................................
+
+psi.asy  ... plots psi (R, Z)
+psir.asy ... plots interpolated dPsi/dR (R, Z)
+psiz.asy ... plots interpolated dPsi/dZ (R, Z)
+j.asy    ... plots j_phi (R, Z)
+jp.asy   ... plots j_phi (R)
+flux.asy ... plots flux coordinate grid
+
+rpsi.asy ... plots Psi(R) profile on inboard midplane
+rp1.asy  ... plots Psi(r) profile on inboard midplane
+pqg.asy  ... plots q/g(Psi) profile
+qr.asy   ... plots q(r) profile
+
+r.asy        ... plots (R(r,th)-Raxis)/r (R,th)
+z.asy        ... plots Z(r,th)/r (R,th)
+rt.asy       ... plots (dR/dth)/r (R,th)
+zt.asy       ... plots (dZ/dth)/r (R,th)
+rr.asy       ... plots dR/dr (R,th)
+zr.asy       ... plots dZ/dr (R,th)
+igradr2.asy  ... plots 1/|grad r|^2 (R,th)
+gradrt.asy   ... plots r grad r . grad th / |grad r|^2 (R,th)
+r2.asy       ... plots (R^2 - Raxis^2)/r (R,th)
+jac.asy      ... plots Jacobian
+
+rp.asy        ... plots (R(r,th)-Raxis)/r (R)
+zp.asy        ... plots Z(r,th)/r (R)
+rrp.asy       ... plots dR/dr (R)
+zrp.asy       ... plots dZ/dr (R)
+igradr2p.asy  ... plots 1/|grad r|^2 (R)
+gradrtp.asy   ... plots r grad r . grad th / |grad r|^2 (R)
+
+q.asy      ... plots safety factor profile
+qp.asy     ... plots derivative of safety factor profile
+p1.asy     ... plots P1 profile
+p2.asy     ... plots P2 profile
+p3.asy     ... plots P3 profile
+p4.asy     ... plots P4 profile
+p5.asy     ... plots P5 profile
+p6.asy     ... plots P6 profile
+p1p.asy    ... plots derivative of P1 profile
+p2p.asy    ... plots derivative of P2 profile
+p3p.asy    ... plots derivative of P3 profile
+m1.asy     ... plots M1 profile
+m2.asy     ... plots M2 profile
+m3.asy     ... plots M3 profile
+m4.asy     ... plots M4 profile
+m5.asy     ... plots M5 profile
+m6.asy     ... plots M6 profile
+m7.asy     ... plots M7 profile
+m8.asy     ... plots M8 profile
+m9.asy     ... plots M9 profile
+m1p.asy    ... plots derivative of M1 profile
+m3p.asy    ... plots derivative of M3 profile
+m4p.asy    ... plots derivative of M4 profile
+
+pmat.asy   ... plots P matrix
+qmat.asy   ... plots Q matrix
+ppmat.asy  ... plots P' matrix
+qqmat.asy  ... plots Q' matrix
