@@ -435,7 +435,7 @@ int main (int argc, char *argv[])
       
       // Output equilibrium data
       file = OpenFile ("Stage1/profile.out");
-      fprintf (file, "%d %d %e %e %e %e %e %e %e %e %e %e %e %e\n",
+      fprintf (file, "%d %d %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e\n",
 	       NBPTS, NPTS, ASPCT, ELONG, TRIANG, QC, QB, BETAN, MUP, MU, NUP, NU, P0, SB);
       fclose (file);
       // #############

@@ -110,7 +110,7 @@ void Flux::Stage2 ()
 	  double val = gsl_matrix_get (Psi, i, j);
 	  if (val < 0.) 
 	    val = 0.;
-	  fprintf (file, "%e ", val);
+	  fprintf (file, "%17.10e ", val);
 	}
       fprintf (file, "\n");
     }
@@ -119,7 +119,7 @@ void Flux::Stage2 ()
   for (int i = 0; i < II; i++)
     {
       for (int j = 0; j < JJ; j++)
-	fprintf (file, "%e ", GetPsiR (R[i], Z[j]));
+	fprintf (file, "%17.10e ", GetPsiR (R[i], Z[j]));
       fprintf (file, "\n");
     }
   fclose (file);
@@ -127,7 +127,7 @@ void Flux::Stage2 ()
   for (int i = 0; i < II; i++)
     {
       for (int j = 0; j < JJ; j++)
-	fprintf (file, "%e ", GetPsiZ (R[i], Z[j]));
+	fprintf (file, "%17.10e ", GetPsiZ (R[i], Z[j]));
       fprintf (file, "\n");
     }
   fclose (file);  
@@ -149,7 +149,7 @@ void Flux::Stage2 ()
 			       - GetPsiR (R[i], Z[j]) /R[i]) /R[i];
 	  if (gsl_matrix_get (Psi, i, j) < 0.5*psib)
 	    val = 0.;
-	  fprintf (file, "%e ", val);
+	  fprintf (file, "%17.10e ", val);
 	}
       fprintf (file, "\n");
     }
@@ -237,7 +237,7 @@ void Flux::Stage2 ()
 
   file = OpenFile ("Stage2/rs.out");
   for (int l = 0; l  < L; l++)
-    fprintf (file, "%e %e\n", Rs[l], s[l]);
+    fprintf (file, "%17.10e %17.10e\n", Rs[l], s[l]);
   fclose (file);
 
   // Set up Psi grid
@@ -289,23 +289,23 @@ void Flux::Stage2 ()
   
   file = OpenFile ("Stage2/rpsi1.out");
   for (int j = 0; j  < J; j++)
-    fprintf (file, "%e %e\n", RP[j], S[j]);
+    fprintf (file, "%17.10e %17.10e\n", RP[j], S[j]);
   fclose (file);
 
   file = OpenFile ("Stage2/pqg.out");
   for (int j = 0; j < J; j++)
-    fprintf (file, "%e %e\n", S[j], QGP[j]);
+    fprintf (file, "%17.10e %17.10e\n", S[j], QGP[j]);
   fclose (file);
 
   file = OpenFile ("Stage2/rp.out");
   for (int j = 0; j < J; j++)
-    fprintf (file, "%e %e\n", rP[j], S[j]);
+    fprintf (file, "%17.10e %17.10e\n", rP[j], S[j]);
   fclose (file);
  
   // Output q(r) profile
   file = OpenFile ("Stage2/qr.out");
   for (int j = 0; j < J; j++)
-    fprintf (file, "%e %e %e %e %e %e %e %e %e\n", 
+    fprintf (file, "%17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e\n", 
 	     rP[j], QP[j], QGP[j], P[j], GP[j], PP[j], GPP[j], PPP[j], QX[j]);
   fclose (file);
 
@@ -318,7 +318,7 @@ void Flux::Stage2 ()
   else
     qb = Interpolate (J, rP, QP, rb, 0);
   file = OpenFile ("Stage2/Edge.out");
-  fprintf (file, "%e %e %e\n", psib, rb, qb);
+  fprintf (file, "%17.10e %17.10e %17.10e\n", psib, rb, qb);
   fclose (file);
 
   // ........................
@@ -359,19 +359,19 @@ void Flux::Stage2 ()
   // Output flux coordinates
   file = OpenFile ("Stage2/rx.out");
   for (int j = 0; j < J; j++)
-    fprintf (file, "%e ", rP[j]);     
+    fprintf (file, "%17.10e ", rP[j]);     
   fprintf (file, "\n");
   fclose (file);
   file = OpenFile ("Stage2/tt.out");
   for (int k = 0; k < K; k++)
-    fprintf (file, "%e ", th[k]);  
+    fprintf (file, "%17.10e ", th[k]);  
   fprintf (file, "\n");
   fclose (file);
   file = OpenFile ("Stage2/Rr.out");
   for (int k = 0; k < K; k++)
     {
       for (int j = 0; j < J; j++)
-	fprintf (file, "%e ", Raxis + rP[j] * gsl_matrix_get (Rst, j, k));
+	fprintf (file, "%17.10e ", Raxis + rP[j] * gsl_matrix_get (Rst, j, k));
       fprintf (file, "\n");
     }
   fprintf (file, "\n");
@@ -380,7 +380,7 @@ void Flux::Stage2 ()
   for (int k = 0; k < K; k++)
     {
       for (int j = 0; j < J; j++)
-	fprintf (file, "%e ", rP[j] * gsl_matrix_get (Zst, j, k));
+	fprintf (file, "%17.10e ", rP[j] * gsl_matrix_get (Zst, j, k));
       fprintf (file, "\n");
     }
   fprintf (file, "\n");
@@ -389,7 +389,7 @@ void Flux::Stage2 ()
   for (int j = 0; j < J; j++)
     {
       for (int k = 0; k < K; k++)
-	fprintf (file, "%e ", Raxis + rP[j] * gsl_matrix_get (Rst, j, k));
+	fprintf (file, "%17.10e ", Raxis + rP[j] * gsl_matrix_get (Rst, j, k));
     }
   fprintf (file, "\n");
   fclose (file);
@@ -397,7 +397,7 @@ void Flux::Stage2 ()
   for (int j = 0; j < J; j++)
     {
       for (int k = 0; k < K; k++)
-	fprintf (file, "%e ", Raxis + rP[j] * gsl_matrix_get (Rst, j, k));
+	fprintf (file, "%17.10e ", Raxis + rP[j] * gsl_matrix_get (Rst, j, k));
       fprintf (file, "\n");
     }
   fprintf (file, "\n");
@@ -406,7 +406,7 @@ void Flux::Stage2 ()
   for (int j = 0; j < J; j++)
     {
       for (int k = 0; k < K; k++)
-	fprintf (file, "%e ", rP[j] * gsl_matrix_get (Zst, j, k));
+	fprintf (file, "%17.10e ", rP[j] * gsl_matrix_get (Zst, j, k));
     }
   fprintf (file, "\n");
   fclose (file);
@@ -414,7 +414,7 @@ void Flux::Stage2 ()
   for (int j = 0; j < J; j++)
     {
       for (int k = 0; k < K; k++)
-	fprintf (file, "%e ", rP[j] * gsl_matrix_get (Zst, j, k));
+	fprintf (file, "%17.10e ", rP[j] * gsl_matrix_get (Zst, j, k));
       fprintf (file, "\n");
     }
   fprintf (file, "\n");
@@ -458,7 +458,7 @@ void Flux::Stage2 ()
 	{
 	  double r = gsl_matrix_get (Rst, j, k);
 
-	  fprintf (file, "%e ", r);
+	  fprintf (file, "%17.10e ", r);
 	}
       fprintf (file, "\n");
     }
@@ -470,7 +470,7 @@ void Flux::Stage2 ()
 	{
 	  double z = gsl_matrix_get (Zst, j, k);
 
-	  fprintf (file, "%e ", z);
+	  fprintf (file, "%17.10e ", z);
 	}
       fprintf (file, "\n");
     }
@@ -482,7 +482,7 @@ void Flux::Stage2 ()
 	{
 	  double rt = gsl_matrix_get (Rt, j, k);
 
-	  fprintf (file, "%e ", rt);
+	  fprintf (file, "%17.10e ", rt);
 	}
       fprintf (file, "\n");
     }
@@ -494,7 +494,7 @@ void Flux::Stage2 ()
 	{
 	  double zt = gsl_matrix_get (Zt, j, k);
 
-	  fprintf (file, "%e ", zt);
+	  fprintf (file, "%17.10e ", zt);
 	}
       fprintf (file, "\n");
     }
@@ -506,7 +506,7 @@ void Flux::Stage2 ()
 	{
 	  double rr = gsl_matrix_get (Rr, j, k);
 
-	  fprintf (file, "%e ", rr);
+	  fprintf (file, "%17.10e ", rr);
 	}
       fprintf (file, "\n");
     }
@@ -518,7 +518,7 @@ void Flux::Stage2 ()
 	{
 	  double zr = gsl_matrix_get (Zr, j, k);
 
-	  fprintf (file, "%e ", zr);
+	  fprintf (file, "%17.10e ", zr);
 	}
       fprintf (file, "\n");
     }
@@ -537,7 +537,7 @@ void Flux::Stage2 ()
 	  val = Rv*Rv *epsa*epsa*epsa*epsa /(rt*rt + zt*zt);
 	  gsl_matrix_set (igradr2, j, k, val);
 
-	  fprintf (file, "%e ", val);
+	  fprintf (file, "%17.10e ", val);
 	}
       fprintf (file, "\n");
     }
@@ -555,7 +555,7 @@ void Flux::Stage2 ()
 	  val = - (zr*zt + rr*rt) /(zt*zt + rt*rt);
 	  gsl_matrix_set (gradrt, j, k, val);
 
-	  fprintf (file, "%e ", val);
+	  fprintf (file, "%17.10e ", val);
 	}
       fprintf (file, "\n");
     }
@@ -573,7 +573,7 @@ void Flux::Stage2 ()
 	    val = (R1*R1 - Raxis*Raxis) /rP[j];
 	  gsl_matrix_set (R2, j, k, val);
 
-	  fprintf (file, "%e ", val);
+	  fprintf (file, "%17.10e ", val);
 	}
       fprintf (file, "\n");
     }
@@ -594,7 +594,7 @@ void Flux::Stage2 ()
 	  val = (rt*zr - rr*zt) /R1 /epsa/epsa;
 	  Jac += val;
 
-	  fprintf (file, "%e ", val);
+	  fprintf (file, "%17.10e ", val);
 	}
       fprintf (file, "\n");
     }
@@ -624,7 +624,7 @@ void Flux::Stage2 ()
 	  fabs(Jac-1.));
 
   file = OpenFile ("Stage2/info.out");
-  fprintf (file, "%e %e %e %e\n", Gamma, 1./IASPCT, epsa, epsb/epsa);
+  fprintf (file, "%17.10e %17.10e %17.10e %17.10e\n", Gamma, 1./IASPCT, epsa, epsb/epsa);
   fclose (file);
 
   // ........

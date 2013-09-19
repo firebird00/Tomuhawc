@@ -224,7 +224,8 @@ SUBROUTINE STEPON
   !
   IF (NEQDSK.NE.0 .OR. NIDEAL.EQ.6) THEN
     !     SAVE EQDSK FILE (uses COCOS_OUT, could be put at the end, but stayed here to be written earlier)
-    IF (NVERBOSE .GE. 1) CALL IODISK(7)
+    !IF (NVERBOSE .GE. 1) CALL IODISK(7)
+    CALL IODISK(7)
   ENDIF
   !
   IF (NVERBOSE .GE. 1) THEN

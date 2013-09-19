@@ -45,10 +45,10 @@ void Flux::Profile ()
 
   FILE *file = OpenFile ("Stage2/profile.out");
   for (int j = 0; j < J; j++)
-    fprintf (file, "%e %e %e %e %e %e %e %e %e %e %e %e\n", 
+    fprintf (file, "%17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e\n", 
 	     rP[j], QP[j], QX[j], P1[j], P2[j], P3[j], P4[j], P5[j], P6[j], P1P[j], P2P[j], P3P[j]);
   double one = 1.;
-  fprintf (file, "%e %e %e %e %e %e %e %e %e %e %e %e\n", 
+  fprintf (file, "%17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e\n", 
 	   one, 
 	   QA,
 	   Extrapolate1 (J, rP, QX,  one), 

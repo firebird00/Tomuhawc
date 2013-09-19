@@ -73,16 +73,16 @@ void Flux::Metric ()
 
       for (int m = 0; m < K/2; m++)
 	{
-	  fprintf (file1 , "%e ", gsl_matrix_get (FM1,  j, m));
-	  fprintf (file2 , "%e ", gsl_matrix_get (FM2,  j, m));
-	  fprintf (file3 , "%e ", gsl_matrix_get (FM3,  j, m));
-	  fprintf (file4 , "%e ", gsl_matrix_get (FM4,  j, m));
-	  fprintf (file5 , "%e ", gsl_matrix_get (FM5,  j, m));
-	  fprintf (file6 , "%e ", gsl_matrix_get (FM6,  j, m));
-	  fprintf (file7 , "%e ", gsl_matrix_get (FM7,  j, m));
+	  fprintf (file1 , "%17.10e ", gsl_matrix_get (FM1,  j, m));
+	  fprintf (file2 , "%17.10e ", gsl_matrix_get (FM2,  j, m));
+	  fprintf (file3 , "%17.10e ", gsl_matrix_get (FM3,  j, m));
+	  fprintf (file4 , "%17.10e ", gsl_matrix_get (FM4,  j, m));
+	  fprintf (file5 , "%17.10e ", gsl_matrix_get (FM5,  j, m));
+	  fprintf (file6 , "%17.10e ", gsl_matrix_get (FM6,  j, m));
+	  fprintf (file7 , "%17.10e ", gsl_matrix_get (FM7,  j, m));
 	}
-      fprintf (file8, "%e\n", gsl_matrix_get (FM8, j, 0));
-      fprintf (file9, "%e\n", gsl_matrix_get (FM9, j, 0));
+      fprintf (file8, "%17.10e\n", gsl_matrix_get (FM8, j, 0));
+      fprintf (file9, "%17.10e\n", gsl_matrix_get (FM9, j, 0));
       fprintf (file1, "\n"); fprintf (file2, "\n"); fprintf (file3, "\n"); 
       fprintf (file4, "\n"); fprintf (file5, "\n"); fprintf (file6, "\n");
       fprintf (file7, "\n"); 
@@ -99,33 +99,33 @@ void Flux::Metric ()
   double zero = 0.;
   for (int j = 0; j < J; j++)
     {
-      fprintf (file11, "%e\n", gsl_matrix_get (FM3P, j, 0));
-      fprintf (file12, "%e\n", gsl_matrix_get (FM4P, j, 0));
+      fprintf (file11, "%17.10e\n", gsl_matrix_get (FM3P, j, 0));
+      fprintf (file12, "%17.10e\n", gsl_matrix_get (FM4P, j, 0));
 
       for (int m = 0; m < K/2; m++)
-	fprintf (file10, "%e ", gsl_matrix_get (FM1P, j, m));
+	fprintf (file10, "%17.10e ", gsl_matrix_get (FM1P, j, m));
       fprintf (file10, "\n");
     }
 
   double rx = 1.;
   for (int m = 0; m < K/2; m++)
     {
-      fprintf (file1,  "%e ", Extrapolate2 (J, rP, FM1,  rx, m));
-      fprintf (file2,  "%e ", Extrapolate2 (J, rP, FM2,  rx, m));
-      fprintf (file3,  "%e ", Extrapolate2 (J, rP, FM3,  rx, m));
-      fprintf (file4,  "%e ", Extrapolate2 (J, rP, FM4,  rx, m));
-      fprintf (file5,  "%e ", Extrapolate2 (J, rP, FM5,  rx, m));
-      fprintf (file6,  "%e ", Extrapolate2 (J, rP, FM6,  rx, m));
-      fprintf (file7,  "%e ", Extrapolate2 (J, rP, FM7,  rx, m));
-      fprintf (file10, "%e ", Extrapolate2 (J, rP, FM1P, rx, m));
+      fprintf (file1,  "%17.10e ", Extrapolate2 (J, rP, FM1,  rx, m));
+      fprintf (file2,  "%17.10e ", Extrapolate2 (J, rP, FM2,  rx, m));
+      fprintf (file3,  "%17.10e ", Extrapolate2 (J, rP, FM3,  rx, m));
+      fprintf (file4,  "%17.10e ", Extrapolate2 (J, rP, FM4,  rx, m));
+      fprintf (file5,  "%17.10e ", Extrapolate2 (J, rP, FM5,  rx, m));
+      fprintf (file6,  "%17.10e ", Extrapolate2 (J, rP, FM6,  rx, m));
+      fprintf (file7,  "%17.10e ", Extrapolate2 (J, rP, FM7,  rx, m));
+      fprintf (file10, "%17.10e ", Extrapolate2 (J, rP, FM1P, rx, m));
     }
   fprintf (file1, "\n");  fprintf (file2,  "\n"); fprintf (file3, "\n"); 
   fprintf (file4, "\n");  fprintf (file5,  "\n"); fprintf (file6, "\n");
   fprintf (file7, "\n");  fprintf (file10, "\n");  
-  fprintf (file8,  "%e\n", Extrapolate2 (J, rP, FM8,  rx, 0));
-  fprintf (file9,  "%e\n", Extrapolate2 (J, rP, FM9,  rx, 0));
-  fprintf (file11, "%e\n", Extrapolate2 (J, rP, FM3P, rx, 0));
-  fprintf (file12, "%e\n", Extrapolate2 (J, rP, FM4P, rx, 0));
+  fprintf (file8,  "%17.10e\n", Extrapolate2 (J, rP, FM8,  rx, 0));
+  fprintf (file9,  "%17.10e\n", Extrapolate2 (J, rP, FM9,  rx, 0));
+  fprintf (file11, "%17.10e\n", Extrapolate2 (J, rP, FM3P, rx, 0));
+  fprintf (file12, "%17.10e\n", Extrapolate2 (J, rP, FM4P, rx, 0));
   fclose (file1);  fclose (file2);  fclose (file3);  
   fclose (file4);  fclose (file5);  fclose (file6);  
   fclose (file7);  fclose (file8);  fclose (file9);  

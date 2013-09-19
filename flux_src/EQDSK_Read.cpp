@@ -74,39 +74,30 @@ int Flux::EQDSK_Read (char *FILENAME,
     if (fscanf (file, "%lf %lf", &RLPTS[i], &ZLPTS[i]) != 2)
       return 19;
 
-  for (int n = 0; n < 9; n++)
-    if (fgets (c, 1000, file) == NULL) 
-      return 20;
   if (fscanf (file, "%lf", &IP) != 1)
     return 21;
-  for (int n = 0; n < 3; n++)
-    if (fgets (c, 1000, file) == NULL)
-      return 22;
+  if (fgets (c, 1000, file) == NULL)
+    return 22;
   if (fscanf (file, "%lf", &QC) != 1)
     return 23;
-  for (int n = 0; n < 1; n++)
-    if (fgets (c, 1000, file) == NULL)
-      return 24;
+  if (fgets (c, 1000, file) == NULL)
+    return 24;
   if (fscanf (file, "%lf", &QA) != 1)
     return 25;
-  for (int n = 0; n < 1; n++)
-    if (fgets (c, 1000, file) == NULL)
-      return 26;
+  if (fgets (c, 1000, file) == NULL)
+    return 26;
   if (fscanf (file, "%lf", &BETAP) != 1)
     return 27;
-  for (int n = 0; n < 2; n++)
-    if (fgets (c, 1000, file) == NULL)
-      return 28;
+  if (fgets (c, 1000, file) == NULL)
+    return 28;
   if (fscanf (file, "%lf", &LI) != 1)
     return 29;
-  for (int n = 0; n < 2; n++)
-    if (fgets (c, 1000, file) == NULL)
-      return 30;
+  if (fgets (c, 1000, file) == NULL)
+    return 30;
   if (fscanf (file, "%lf", &BETA) != 1)
     return 31;
-  for (int n = 0; n < 6; n++)
-    if (fgets (c, 1000, file) == NULL)
-      return 32;
+  if (fgets (c, 1000, file) == NULL)
+    return 32;
   if (fscanf (file, "%lf", &IASPCT) != 1)
     return 33;
 

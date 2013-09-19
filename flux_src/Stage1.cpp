@@ -60,7 +60,7 @@ void Flux::Stage1 (int flag)
 	  BETAN);
 
   FILE *file = fopen ("Stage2/flux.out", "w");
-  fprintf (file, "%e %e %e %e %e %e %e\n", IP, QC, QA, BETAP, LI, BETA, BETAN);
+  fprintf (file, "%17.10e %17.10e %17.10e %17.10e %17.10e %17.10e %17.10e\n", IP, QC, QA, BETAP, LI, BETA, BETAN);
   fclose (file);
 
   // ................
@@ -86,41 +86,41 @@ void Flux::Stage1 (int flag)
   fclose (file);
 
   file = OpenFile ("Stage1/Box.out");
-  fprintf (file, "%e %e %e %e\n", xR[0] /R0, xZ[0] /R0, xR[INRBOX-1] /R0, xZ[INZBOX-1] /R0);
+  fprintf (file, "%17.10e %17.10e %17.10e %17.10e\n", xR[0] /R0, xZ[0] /R0, xR[INRBOX-1] /R0, xZ[INZBOX-1] /R0);
   fclose (file);
 
   file = OpenFile ("Stage1/R.out");
   for (int i = 0; i < INRBOX; i++)
-    fprintf (file, "%e\n", xR[i] /R0);
+    fprintf (file, "%17.10e\n", xR[i] /R0);
   fclose (file);
 
   file = OpenFile ("Stage1/Z.out");
   for (int j = 0; j < INZBOX; j++)
-    fprintf (file, "%e\n", xZ[j] /R0);
+    fprintf (file, "%17.10e\n", xZ[j] /R0);
   fclose (file);
 
   file = OpenFile ("Stage1/Psi.out");
   for (int i = 0; i < INRBOX; i++)
     {
       for (int j = 0; j < INZBOX; j++)
-	fprintf (file, "%e ", psi[i][j] /PSIAXIS);
+	fprintf (file, "%17.10e ", psi[i][j] /PSIAXIS);
       fprintf (file, "\n");
     }
   fclose (file);
 
   file = OpenFile ("Stage1/Axis.out");
-  fprintf (file, "%e %e %e\n", RAXIS /R0, ZAXIS /R0, xpsic);
+  fprintf (file, "%17.10e %17.10e %17.10e\n", RAXIS /R0, ZAXIS /R0, xpsic);
   fclose (file);
 
   file = OpenFile ("Stage1/Profiles.out");
   for (int i = 0; i < INRBOX; i++)
-    fprintf (file, "%e %e %e %e %e %e\n", 
+    fprintf (file, "%17.10e %17.10e %17.10e %17.10e %17.10e %17.10e\n", 
 	     xPSI[i], xg[i] /(R0*B0), xP[i] /(B0*B0/mu0), 
 	     (R0*R0*B0) * xggp[i] /(R0*R0*B0*B0), (R0*R0*B0) * xPp[i] /(B0*B0/mu0), xq[i]);
   fclose (file);
 
   file = OpenFile ("Stage1/Boundary.out");
   for (int i = 0; i < NBPTS; i++)
-    fprintf (file, "%e %e\n", RBPTS[i] /R0, ZBPTS[i] /R0);
+    fprintf (file, "%17.10e %17.10e\n", RBPTS[i] /R0, ZBPTS[i] /R0);
   fclose (file);
 }

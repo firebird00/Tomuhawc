@@ -15,20 +15,20 @@ void WriteProfile (int NBPTS, double ASPCT, double ELONG, double TRIANG,
   FILE *file = OpenFile ("EXPEQ");
 
   int two = 2; double Zero = 0.;
-  fprintf (file, "%18.8e\n%18.8e\n%18.8e\n", ASPCT, Zero, Zero);
+  fprintf (file, "%17.10e\n%17.10e\n%17.10e\n", ASPCT, Zero, Zero);
   fprintf (file, "%5d\n", NBPTS);
   for (int i = 0; i < NBPTS; i++)
     {
       double th = double (i) * 2.*M_PI /double (NBPTS-1);
       double R  = 1. + ASPCT * cos(th + TRIANG * sin(th));
       double Z  = ASPCT * ELONG * sin(th);
-      fprintf (file, "%18.8e %18.8e\n", R, Z);
+      fprintf (file, "%17.10e %17.10e\n", R, Z);
     }
   fprintf (file, "%5d\n%5d\n", NPTS, two);
   for (int i = 0; i < NPTS; i++)
     {
       double s = double (i) /double (NPTS-1);
-      fprintf (file, "%18.8e\n", s);
+      fprintf (file, "%17.10e\n", s);
     }
   for (int i = 0; i < NPTS; i++)
     {
@@ -39,7 +39,7 @@ void WriteProfile (int NBPTS, double ASPCT, double ELONG, double TRIANG,
 	val = P0 * pow (1. - pow (x, 2.*MUP), NUP);
       else
 	val = 0.;
-      fprintf (file, "%18.8e\n", val);
+      fprintf (file, "%17.10e\n", val);
     }
   for (int i = 0; i < NPTS; i++)
     {
@@ -50,7 +50,7 @@ void WriteProfile (int NBPTS, double ASPCT, double ELONG, double TRIANG,
 	val = pow (1. - pow (x, 2.*MU), NU);
       else
 	val = 0.;
-      fprintf (file, "%18.8e\n", val);
+      fprintf (file, "%17.10e\n", val);
     }
   
   fclose (file);

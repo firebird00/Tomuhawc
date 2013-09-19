@@ -98,15 +98,15 @@ void Flux::Boundary ()
 	  double PP = (P - gsl_matrix_get (PPb, mm, m)) /(1. - rP[J-1]);
 	  double QQ = (Q - gsl_matrix_get (QQb, mm, m)) /(1. - rP[J-1]);
 
-	  fprintf (file1, "%e ", P);
-	  fprintf (file2, "%e ", Q);
-	  fprintf (file3, "%e ", PP);
-	  fprintf (file4, "%e ", QQ);
+	  fprintf (file1, "%17.10e ", P);
+	  fprintf (file2, "%17.10e ", Q);
+	  fprintf (file3, "%17.10e ", PP);
+	  fprintf (file4, "%17.10e ", QQ);
 	}
       fprintf (file1, "\n"); fprintf (file2, "\n"); 
       fprintf (file3, "\n"); fprintf (file4, "\n"); 
 
-      fprintf (file5, "%e %e\n", Pm[m], Qm[m]);
+      fprintf (file5, "%17.10e %17.10e\n", Pm[m], Qm[m]);
     }
   fclose (file1); fclose (file2); fclose (file3); fclose (file4); fclose (file5);
 

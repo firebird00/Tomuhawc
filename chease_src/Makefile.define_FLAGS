@@ -135,9 +135,12 @@ endif
 ifeq ($(CHEASE_MACHINE),linux_nohdf5)
   ifeq ($(CHEASE_F90),gfortran)
     F90 = gfortran
-    F90FLAGS = -g -O3 -Wall -ffree-line-length-none -I$(DIR_interpos)
+    #F90FLAGS = -g  -Wall -ffree-line-length-none -I$(DIR_interpos)
+    #F90FLAGS_parser = -ffree-line-length-none
+    #LDFLAGS = -g -O3 -ffree-line-length-none
+    F90FLAGS = -O3 -Wall -ffree-line-length-none -I$(DIR_interpos)
     F90FLAGS_parser = -O3 -ffree-line-length-none
-    LDFLAGS = -g -O3 -ffree-line-length-none
+    LDFLAGS = -O3 -ffree-line-length-none
   endif
   ifeq ($(CHEASE_F90),g95)
     F90 = g95
