@@ -70,6 +70,12 @@ int main (int argc, char *argv[])
 	  if (!thawc.Settwist (int(data[0]))) 
 	    printf ("%-stwist = %4d\n", cursor, int(data[0]));
 	} 
+      else if ((in_string[0] == 'f') && (in_string[1] == 'r'))
+	{
+	  read_data (cursor, "free ? ", 1, data);
+	  if (!thawc.Setfree (int(data[0]))) 
+	    printf ("%-sfree = %4d\n", cursor, int(data[0]));
+	} 
       else if ((in_string[0] == 'n') && (in_string[1] == 't'))
 	{
 	  read_data (cursor, "ntor ? ", 1, data);
@@ -166,6 +172,7 @@ int main (int argc, char *argv[])
 	{
 	  printf ("\n");  
 	  printf ("twis ... set mode parameter, twist\n");
+	  printf ("free ... set mode parameter, free\n");
 	  printf ("ntor ... set mode parameter, ntor\n");
 	  printf ("side ... set mode parameter, side\n");
 	  printf ("off  ... set mode parameter, off\n\n");

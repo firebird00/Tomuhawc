@@ -24,11 +24,9 @@
 //  Psi(i, j)                         ... coefficient at ith rational surface due to jth solution
 // logf                            .. fixup spacing flag
 // flag                            .. truncation error flag
-// edge                            .. set if rx is wall radius
 // interactive                     .. set if in iteractive mode
 // _adap                           .. name of adpative integration monitor file
 // _soln                           .. name of solution file
-// _edge                           .. name of edge data file
 //
 // side                            .. number of sideband harmonics
 // vac                             .. total number of rational surfaces (including vacuum surfaces)
@@ -39,8 +37,8 @@
 // ####################################################################################
 void Thawc::Segment_Fixup (double &r, double rx, int nf, 
 			   gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, 
-			   int logf, int flag, int edge, int interactive, 
-			   char *_adap, char *_soln, char *_edge)
+			   int logf, int flag, int interactive, 
+			   char *_adap, char *_soln)
 {
   double rw = r, RE;
   int lmax = (nf == 0) ? 1 : nf;
@@ -59,13 +57,13 @@ void Thawc::Segment_Fixup (double &r, double rx, int nf,
       
       // Integrate solution vectors to next fixup radius
       printf ("Integrate solution vectors to fixup radius: r/b = %11.4e\n", RE/rb);
-      Segment (r, RE, YY, flag, edge, interactive, _adap, _soln, _edge);
+      Segment (r, RE, YY, flag, interactive, _adap, _soln);
 
       // Fixup solution vector
       if (interactive) LogVector (r, YY);
       if (nf > 0)
 	{
-	  Fixup (YY, Psi, dPsi, edge, interactive, _soln, _edge);
+	  Fixup (YY, Psi, dPsi, interactive, _soln);
 	  if (interactive) LogVector (r, YY);
 	}
     }

@@ -14,10 +14,8 @@
 //  Psi(i, j)                         ... coefficient at ith rational surface due to jth solution
 // dPsi(vac, dim+vac)              .. coefficient of small solution
 //  Psi(i, j)                         ... coefficient at ith rational surface due to jth solution
-// edge                            .. set if edge data needs fixup
 // interactive                     .. set if in interactive mode
 // _soln                           .. name of solution file
-// _edge                           .. name of edge data file
 //
 // side                            .. number of sideband harmonics
 // vac                             .. total number of rational surfaces (including vacuum surfaces)
@@ -27,8 +25,8 @@
 // dimN = dim1*(dim+vac)           .. dimension of composite solution vector
 //
 // ##############################################################################################
-void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int edge, int interactive, 
-		   char *_soln, char *_edge)
+void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int interactive, 
+		   char *_soln)
 {
   FILE       *soln;
   int         c, npts;
@@ -67,17 +65,6 @@ void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int edge, 
       fclose (soln);
     }
 
-  if (edge)
-    {
-      // Read in solution vectors from edge solution file
-      Ye   = new double[dimN];
-      soln = OpenFiler (_edge);
-      fscanf (soln, "%lf", &r);
-      for (int k = 0; k < dimN; k++)
-	fscanf (soln, "%lf", &Ye[k]);
-      fclose (soln);
-    }
-  
   // Find index of m=0 poloidal harmonic
   int i0 = -1;
   for (int i = 0; i < dim; i++)
@@ -113,16 +100,6 @@ void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int edge, 
 			if (fabs(val) < Eta) val = 0.;
 			gsl_matrix_set (Y, l, dim1*j+k, val);
 		      }
-		  
-		  // Fixup edge data
-		  if (edge) 
-		    {
-		      double Yki = Ye[dim1*i+k];
-		      double Ykj = Ye[dim1*j+k];
-		      val = Ykj - (yij /yii) *Yki;
-		      if (fabs(val) < Eta) val = 0.;
-		      Ye[dim1*j+k] = val;
-		    }
 		}
 
 	      // Fixup Psi and dPsi matrices
@@ -167,16 +144,6 @@ void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int edge, 
 			if (fabs(val) < Eta) val = 0.;
 			gsl_matrix_set (Y, l, dim1*j+k, val);
 		      }	
-		  
-		  // Fixup edge data
-		  if (edge) 
-		    {
-		      double Yki = Ye[dim1*i+k];
-		      double Ykj = Ye[dim1*j+k];
-		      val = Ykj - (yij /yii) *Yki;
-		      if (fabs(val) < Eta) val = 0.;
-		      Ye[dim1*j+k] = val;
-		    }
 		}
 	      
 	      // Fixup Psi and dPsi matrices
@@ -217,16 +184,6 @@ void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int edge, 
 			if (fabs(val) < Eta) val = 0.;
 			gsl_matrix_set (Y, l, dim1*j+k, val);
 		      }
-		  
-		  // Fixup edge data
-		  if (edge) 
-		    {
-		      double Yki = Ye[dim1*i+k];
-		      double Ykj = Ye[dim1*j+k];
-		      val = Ykj - (yij /yii) *Yki;
-		      if (fabs(val) < Eta) val = 0.;
-		      Ye[dim1*j+k] = val;
-		    }
 		}
 
 	      // Fixup Psi and dPsi matrices
@@ -261,13 +218,6 @@ void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int edge, 
 		double Yki = gsl_matrix_get (Y, l, dim1*i+k);
 		gsl_matrix_set (Y, l, dim1*i+k, Yki /yii);
 	      }
-	  
-	  // Renormalize edge data
-	  if (edge)
-	    {
-	      double Yki = Ye[dim1*i+k];
-	      Ye[dim1*i+k] =  Yki /yii;
-	    }
 	}
 
       // Renormalize Psi and dPsi matrices
@@ -295,23 +245,9 @@ void Thawc::Fixup (gsl_matrix *YY, gsl_matrix *Psi, gsl_matrix *dPsi, int edge, 
       fclose (soln);
     }
 
-  // Rewrite edge data
-  if (edge)
-    {
-      soln = OpenFile (_edge);
-      fprintf (soln, "%e", r);
-      for (int i = 0; i < dimN; i++)
-	fprintf (soln, " %20.15e", Ye[i]);
-      fprintf (soln, "\n");
-      fclose (soln);
-    }
-
   if (interactive)
     {
       delete[] rr;
       gsl_matrix_free (Y);
     }
-
-  if (edge)
-    delete[] Ye;
 }

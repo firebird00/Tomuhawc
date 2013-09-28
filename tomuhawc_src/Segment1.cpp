@@ -16,11 +16,9 @@
 //      Y[dim1*i     +0] .. y[dim1*i     +dim-1]  - psi
 //      Y[dim1*i+dim +0] .. y[dim1*i+dim +dim-1]  - Z
 // flag                .. truncation error flag
-// edge                .. set if rx is wall
 // interactive         .. set if program in iteractive mode
 // _adap               .. name of adaptive step monitor file
 // _soln               .. name of solution file
-// _edge               .. name of edge data file
 //
 // side                .. number of sideband harmonics
 // vac                 .. total number of rational surfaces (including vacuum surfaces)
@@ -43,8 +41,8 @@
 //
 // ####################################################################################
 void Thawc::Segment1 (double &r, double rx, double Y[], 
-		      int flag, int edge, int interactive,
-		      char *_adap, char *_soln, char *_edge)
+		      int flag, int interactive,
+		      char *_adap, char *_soln)
 {
   gsl_odeiv_system sys = {pRhs, NULL, dimN, this};
   const gsl_odeiv_step_type *T;
@@ -113,17 +111,6 @@ void Thawc::Segment1 (double &r, double rx, double Y[],
     {
       fclose (adap); 
       fclose (soln);
-    }
-
-  // Output solution vector at plasma edge
-  if (edge == 1)
-    {
-      FILE *edge = OpenFile (_edge);
-      fprintf (edge, "%e", r);
-      for (int i = 0; i < dimN; i++)
-	fprintf (edge, " %20.15e", Y[i]);
-      fprintf (edge, "\n");
-      fclose (edge);
     }
 
   gsl_odeiv_evolve_free  (e);

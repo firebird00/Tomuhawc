@@ -9,6 +9,7 @@ Thawc::Thawc ()
 { 
   // Set default values of class parameters
   twist   = 0;
+  free    = 0;
   ntor    = 1;
   side    = 9;
   off     = 0;
@@ -40,59 +41,64 @@ Thawc::Thawc ()
 	  printf ("Error reading thawc.in (line 1)\n");
 	  exit (1);
 	}
-      if (fscanf (file, "%s %d",  c, &ntor) != 2)
+      if (fscanf (file, "%s %d",  c, &free) != 2)
 	{
 	  printf ("Error reading thawc.in (line 2)\n");
+	  exit (1);
+	}
+      if (fscanf (file, "%s %d",  c, &ntor) != 2)
+	{
+	  printf ("Error reading thawc.in (line 3)\n");
 	  exit (1);
 	}	
       if (fscanf (file, "%s %d",  c, &side) != 2)
 	{
-	  printf ("Error reading thawc.in (line 3)\n");
+	  printf ("Error reading thawc.in (line 4)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %d",  c, &off) != 2)
 	{
-	  printf ("Error reading thawc.in (line 3)\n");
+	  printf ("Error reading thawc.in (line 5)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %lf", c, &r0) != 2)
 	{
-	  printf ("Error reading thawc.in (line 4)\n");
+	  printf ("Error reading thawc.in (line 6)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %lf", c, &r1) != 2)
 	{
-	  printf ("Error reading thawc.in (line 5)\n");
+	  printf ("Error reading thawc.in (line 7)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %d",  c, &nfix) != 2)
 	{
-	  printf ("Error reading thawc.in (line 6)\n");
+	  printf ("Error reading thawc.in (line 8)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %lf", c, &acc) != 2)
 	{
-	  printf ("Error reading thawc.in (line 7)\n");
+	  printf ("Error reading thawc.in (line 9)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %lf", c, &del) != 2)
 	{
-	  printf ("Error reading thawc.in (line 8)\n");
+	  printf ("Error reading thawc.in (line 10)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %lf", c, &eps) != 2)
 	{
-	  printf ("Error reading thawc.in (line 9)\n");
+	  printf ("Error reading thawc.in (line 11)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %lf", c, &nulc) != 2)
 	{
-	  printf ("Error reading thawc.in (line 10)\n");
+	  printf ("Error reading thawc.in (line 12)\n");
 	  exit (1);
 	}
       if (fscanf (file, "%s %d", c, &skip) != 2)
 	{
-	  printf ("Error reading thawc.in (line 11)\n");
+	  printf ("Error reading thawc.in (line 13)\n");
 	  exit (1);
 	}
     }
@@ -102,8 +108,8 @@ Thawc::Thawc ()
   // Print welcome message
   printf ("\n****************\nProgram TOMUHAWC\n****************\n\n");
   printf ("Input Parameters (from thawc.in):\n");
-  printf ("twist = %3d  ntor = %3d  side = %3d  off = %3d  nfix = %3d\n",
-	  twist, ntor, side, off, nfix);
+  printf ("twist = %3d  free = %3d  ntor = %3d  side = %3d  off = %3d  nfix = %3d\n",
+	  twist, free, ntor, side, off, nfix);
   printf ("r0  = %11.4e  r1  = %11.4e\n", 
 	  r0, r1); 
   printf ("acc = %11.4e  del = %11.4e  eps = %11.4e  nulc = %11.4e  skip = %3d\n", 
@@ -131,12 +137,12 @@ void Thawc::Status (int sw)
 { 
   if (sw)
     {
-      printf ("\ntwist = %3d  ntor = %3d  side = %3d  off = %3d\n",
-	      twist, ntor, side, off);
+      printf ("\ntwist = %3d  free = %3d  ntor = %3d  side = %3d  off = %3d\n",
+	      twist, free, ntor, side, off);
       printf ("\nr0/a = %11.4e  r1/b = %11.4e  nfix = %3d\n",
 	      r0, r1, nfix);
       printf ("\nh0 = %11.4e  acc = %11.4e  flg = %2d  meth = %2d  skip = %2d\n",
-	      h0, acc, flg, meth, skip, del, nulc, eps);
+	      h0, acc, flg, meth, skip);
       printf ("\ndel = %11.4e  nulc = %11.4e  eps = %11.4e\n",
 	      del, nulc, eps);
       printf ("\nEta = %11.4e  Maxiter = %3d\n\n",
@@ -146,8 +152,8 @@ void Thawc::Status (int sw)
     {
       FILE *logfile = OpenFilea ("Stage3/logfile");
       fprintf (logfile, "\nCalculation Parameters:\n");
-      fprintf (logfile, "twist = %3d  ntor = %3d  side = %3d  off = %3d\n",
-	       twist, ntor, side, off);
+      fprintf (logfile, "twist = %3d  free = %3d  ntor = %3d  side = %3d  off = %3d\n",
+	       twist, free, ntor, side, off);
       fprintf (logfile, "r0/a = %11.4e  r1/b = %11.4e  nfix = %3d\n",
 	       r0, r1, nfix);
       fprintf (logfile, "h0 = %11.4e  acc = %11.4e  flg = %2d  meth = %2d  skip = %2d\n",
@@ -171,6 +177,16 @@ int Thawc::Settwist (int _twist)
       return 1;
     }
   twist = _twist;
+  return 0;
+}
+int Thawc::Setfree (int _free)
+{
+  if (_free < 0 || _free > 1)
+    {
+      printf ("Thawc::Setfree: Error - invalid data value\n");
+      return 1;
+    }
+  free = _free;
   return 0;
 }
 int Thawc::Setntor (int _ntor)

@@ -68,3 +68,24 @@ double Flux::ToroidalQ (int m, int n, double z)
   return f * d;
 } 
   
+// ################################################################
+// Function to return derivative of associated Legendre function
+//  
+//   Q^m_(n-1/2) (z)
+//
+//  m ... integer
+//  n ... integer
+//  z ... double greater than 1.0
+//
+// Reference: Abramowitz & Stegun 8.5.2
+// ################################################################
+double Flux::ToroidalQp (int m, int n, double z)
+{
+  double nh  = double (n) - 0.5;			
+  double nhp = nh + double (m);
+  double nhm = nh - double (m) + 1.;
+
+  double val = nhp*nhm * sqrt(z*z - 1.) * ToroidalQ (m-1, n, z) - double(m) * z * ToroidalQ (m, n, z);
+
+  return val /(z*z - 1.);
+} 

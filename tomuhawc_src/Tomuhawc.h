@@ -130,20 +130,29 @@
 // M4P.out
 // M4P[i][0]\n (for i = 0, nint-1)
 
-// P.out
-// Ptor0[i][j] (for j = 0, diag)\n (for i = 0, diag)
+// Pc.out
+// Pc[i][j] (for j = 0, diag)\n (for i = 0, diag)
 
-// Q.out
-// Qtor0[i][j] (for j = 0, diag)\n (for i = 0, diag)
+// Qc.out
+// Qc[i][j] (for j = 0, diag)\n (for i = 0, diag)
 
-// PP.out
-// Ptor1[i][j] (for j = 0, diag)\n (for i = 0, diag)
+// dPcdr.out
+// dPcdr[i][j] (for j = 0, diag)\n (for i = 0, diag)
 
-// QQ.out
-// Qtor1[i][j] (for j = 0, diag)\n (for i = 0, diag)
+// dQcdr.out
+// dQcdr[i][j] (for j = 0, diag)\n (for i = 0, diag)
 
-// PQm.out
-// Pm[j], Qm[j]\n (for j = 0, diag)
+// Ps.out
+// Ps[i][j] (for j = 0, diag)\n (for i = 0, diag)
+
+// Qs.out
+// Qs[i][j] (for j = 0, diag)\n (for i = 0, diag)
+
+// dPsdr.out
+// dPsdr[i][j] (for j = 0, diag)\n (for i = 0, diag)
+
+// dQsdr.out
+// dQsdr[i][j] (for j = 0, diag)\n (for i = 0, diag)
 
 // --------------------------------------------------------
 
@@ -206,10 +215,7 @@
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_linalg.h>
 #include <gsl/gsl_odeiv.h>
-#include <gsl/gsl_complex.h>
-#include <gsl/gsl_complex_math.h>
-#include <gsl/gsl_eigen.h>
-#include <gsl/gsl_sort_vector.h>
+#include <gsl/gsl_sf_gamma.h>
 
 // Pointers to right-hand side function for adaptive integration
 extern "C" int pRhs  (double, const double [], double [], void *);
@@ -284,17 +290,20 @@ private:
   gsl_interp_accel  *AM3P;    // Accelerator for interpolated derivative of second metric element
   gsl_interp_accel  *AM4P;    // Accelerator for interpolated derivative of third metric element
 
-  gsl_matrix        *Ptor0;   // Vacuum solution data
-  gsl_matrix        *Qtor0;   // Vacuum solution data
-  gsl_matrix        *Ptor1;   // Vacuum solution data
-  gsl_matrix        *Qtor1;   // Vacuum solution data
-  double            *Pm;      // Vacuum solution data
-  double            *Qm;      // Vacuum solution data
+  gsl_matrix        *Pc;      // Vacuum solution data
+  gsl_matrix        *Qc;      // Vacuum solution data
+  gsl_matrix        *dPcdr;   // Vacuum solution data
+  gsl_matrix        *dQcdr;   // Vacuum solution data
+  gsl_matrix        *Ps;      // Vacuum solution data
+  gsl_matrix        *Qs;      // Vacuum solution data
+  gsl_matrix        *dPsdr;   // Vacuum solution data
+  gsl_matrix        *dQsdr;   // Vacuum solution data
 
   // ---------------
   // Mode parameters
   // ---------------
   int     twist; // Twisting parity calculation enabled when twist = 1
+  int     free;  // Free boundary enabled when free = 1
   int     ntor;  // Common toroidal mode number
   int     side;  // Number of sideband harmonics
   int     off;   // Offset in sideband harmonics
@@ -386,6 +395,7 @@ public:
   // in Tomahawk.cpp
   // +++++++++++++++
   int Settwist (int);
+  int Setfree  (int);
   int Setntor  (int);
   int Setside  (int);
   int Setoff   (int);
@@ -417,7 +427,9 @@ private:
   // Calculate Glasser, Green, Johnson layer theory parameters
   void GGJCalc (double, double &, double &, double &, double &, double &, double &, double &);
   // Calculate vacuum matching matrix
-  void Vacuum ();
+  void Vacuum (int);
+  // Calculate residual of vacuum matching matrix
+  double VacuumResidual ();
 
   // Initialize single solution vector at magnetic axis
   void Launch1 (double, int, double []);
@@ -426,14 +438,14 @@ private:
   // Integrate multiple solution vectors between specified radii
   // while performing nfix fixups
   void Segment_Fixup (double &, double, int, gsl_matrix *, gsl_matrix *, gsl_matrix *, 
-		      int, int, int, int, char *, char *, char *);
+		      int, int, int, char *, char *);
   // Perform fixup on mutliple solution vectors
-  void Fixup (gsl_matrix *, gsl_matrix *, gsl_matrix *, int, int, char *, char *);
+  void Fixup (gsl_matrix *, gsl_matrix *, gsl_matrix *, int, char *);
 
   // Integrate single solution vector between specified radii
-  void Segment1 (double &, double, double [], int, int, int, char *, char *, char *);
+  void Segment1 (double &, double, double [], int, int, char *, char *);
   // Integrate multiple solution vectors between specified radii
-  void Segment (double &, double, gsl_matrix *, int, int, int, char *, char *, char *);
+  void Segment (double &, double, gsl_matrix *, int, int, char *, char *);
   // Calculate maximum Psi value
   double CalcPsiMax (double []);
 
@@ -449,15 +461,17 @@ private:
   // Evolve multiple solution vectors across given rational surface
   void Jump (double &, int, gsl_matrix *, gsl_matrix *, gsl_matrix *, int, int);
 
+  // Calculate edge data
+  void Edge (gsl_matrix *, gsl_matrix *, gsl_matrix *, int);
   // Apply boundary conditions at edge of plasma
-  void Boundary (gsl_matrix *, gsl_matrix *, int);
+  void Boundary (gsl_matrix *, gsl_matrix *, gsl_matrix *, int);
 
   // Calculate Fee-matrix 
-  void CalcFee (gsl_matrix *, gsl_matrix *, gsl_matrix *, gsl_matrix *);
+  void CalcFee (gsl_matrix *, gsl_matrix *, gsl_matrix *);
   // Calculate Foe-matrix
   void CalcFoe (gsl_matrix *, gsl_matrix *, gsl_matrix *);
   // Calculate Foo-matrix 
-  void CalcFoo (gsl_matrix *, gsl_matrix *, gsl_matrix *, gsl_matrix *);
+  void CalcFoo (gsl_matrix *, gsl_matrix *, gsl_matrix *);
   // Calculate Feo-matrix
   void CalcFeo (gsl_matrix *, gsl_matrix *, gsl_matrix *);
 
@@ -469,11 +483,11 @@ private:
   // Calculate eigenfunctions of Fee-matrix
   void CalcEigFee (gsl_matrix *);
   // Calculate eigenfunctions of Fee-matrix at wall
-  void CalcEigFeea (gsl_matrix *);
+  void CalcEigFeea (gsl_matrix *, gsl_matrix *);
   // Calculate eigenfunctions of Foo-matrix
   void CalcEigFoo (gsl_matrix *);
   // Calculate eigenfunctions of Foo-matrix at wall
-  void CalcEigFooa (gsl_matrix *);
+  void CalcEigFooa (gsl_matrix *, gsl_matrix *);
   // Calculate eigenfunctions of Ee-matrix
   void CalcEigEe (gsl_matrix *);
   // Calculate eigenfunctions of Ee-matrix at wall
@@ -498,6 +512,8 @@ private:
   // ++++++++++
   // Log coupling matrices
   void LogMatrices ();
+  // Log vacuum matrix
+  void LogVmat ();
   // Log multiple solution vectors
   void LogVector (double, gsl_matrix *);
   // Log Y1-matrix

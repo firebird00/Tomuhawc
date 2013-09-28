@@ -5,20 +5,32 @@
 // #####################################################################################
 // Function to apply boundary conditions at wall
 //
-// YY(dim1, dim+vac)                 ... solution vector at wall
-//  YY(i=0,  dim -1;k=0,dim-1)        ... psi: i     .. poloidal harmonic index
-//  YY(i=dim,dim1-1;k=0,dim-1)        ... Z  : i-dim .. poloidal harmomic index 
+// Ya(dim1, dim+vac)                 ... solution vector at r = a
+//  Ya(i=0,  dim -1;k=0,dim-1)        ... psi: i     .. poloidal harmonic index
+//  Ya(i=dim,dim1-1;k=0,dim-1)        ... Z  : i-dim .. poloidal harmomic index 
 //                                             k     .. index of independent solutions
 //                                                       launched from axis
-//  YY(i=0,  dim -1;j=dim,dim+vac-1)  ... psi: i     .. poloidal harmonic index
-//  YY(i=dim,dim1-1;j=dim,dim+vac-1)  ... Z  : i-dim .. poloidal harmonic index
+//  Ya(i=0,  dim -1;j=dim,dim+vac-1)  ... psi: i     .. poloidal harmonic index
+//  Ya(i=dim,dim1-1;j=dim,dim+vac-1)  ... Z  : i-dim .. poloidal harmonic index
 //                                             j     .. index of small solutions
 //                                                       launched from rational surfaces
+// QP(dim1, dim+vac)                 ... q, p coefficients of solution vector at r = a
+//  QP(i=0,  dim -1;k=0,dim-1)        ... q  : i     .. poloidal harmonic index
+//  QP(i=dim,dim1-1;k=0,dim-1)        ... p  : i-dim .. poloidal harmonic index
+//                                             k     .. index of independent solutions
+//                                                      launched from axis
+//  QP(i=0,  dim -1;j=dim,dim+vac-1)  ... q  : i     .. poloidal harmonic index
+//  QP(i=dim,dim1-1;j=dim,dim+vac-1)  ... p  : i-dim .. poloidal harmonic index
+//                                             j     .. index of small solutions
+//                                                      launched from rational surfaces 
 // x(dim, vac)                       ... boundary condition vector
 // interactive                       ... set if in interactive mode
 //
-// Boundary condition:
-// Sum_k = 0,dim-1 YY(i, k) * x (k, j) = - YY(i, dim+j) for i = 0,dim-1 and j = 0,vac-1
+// Fixed boundary condition:
+// Sum_k = 0,dim-1 Ya(i, k) * x(k, j) = - Ya(i, dim+j) for i = 0,dim-1 and j = 0,vac-1
+//
+// Free boundary condition:
+// Sum_k = 0,dim-1 QP(i, k) * x(k, j) = - QP(i, dim+j) for i = 0,dim-1 and j = 0,vac-1
 //
 // side                .. number of sideband harmonics
 // vac                 .. total number of rational surfaces (including vacuum surfaces)
@@ -27,8 +39,7 @@
 // dim1 = 2*dim        .. dimension of single solution vector 
 //
 // ######################################################################################
-
-void Thawc::Boundary (gsl_matrix *YY, gsl_matrix *x, int interactive)
+void Thawc::Boundary (gsl_matrix *Ya, gsl_matrix *QP, gsl_matrix *x, int interactive)
 {
   gsl_matrix      *Mat = gsl_matrix_alloc (dim, dim);
   gsl_matrix      *Y1  = gsl_matrix_alloc (dim, vac);
@@ -38,7 +49,10 @@ void Thawc::Boundary (gsl_matrix *YY, gsl_matrix *x, int interactive)
 
   for (int i = 0; i < dim; i++)
     for (int k = 0; k < dim; k++)
-      gsl_matrix_set (Mat, i, k, gsl_matrix_get (YY, i, k));
+      if (free)
+	gsl_matrix_set (Mat, i, k, gsl_matrix_get (QP, i, k));
+      else
+	gsl_matrix_set (Mat, i, k, gsl_matrix_get (Ya, i, k));
 
   int s;
   gsl_linalg_LU_decomp (Mat, p, &s);
@@ -46,7 +60,10 @@ void Thawc::Boundary (gsl_matrix *YY, gsl_matrix *x, int interactive)
   for (int j = 0; j < vac; j++)
     {
       for (int i = 0; i < dim; i++)
-	gsl_vector_set (Rhs, i, - gsl_matrix_get (YY, i, dim+j));
+	if (free)
+	  gsl_vector_set (Rhs, i, - gsl_matrix_get (QP, i, dim+j));
+	else
+	  gsl_vector_set (Rhs, i, - gsl_matrix_get (Ya, i, dim+j));
      
       gsl_linalg_LU_solve (Mat, p, Rhs, xx);
 
@@ -55,9 +72,17 @@ void Thawc::Boundary (gsl_matrix *YY, gsl_matrix *x, int interactive)
 
       for (int i = 0; i < dim; i++)
 	{
-	  double y = gsl_matrix_get (YY, i, dim+j);
+	  double y;
+	  if (free)
+	    y = gsl_matrix_get (QP, i, dim+j);
+	  else
+	    y = gsl_matrix_get (Ya, i, dim+j);
+	    
 	  for (int k = 0; k < dim; k++)
-	    y += gsl_matrix_get (YY, i, k) * gsl_matrix_get (x, k, j);
+	    if (free)
+	      y += gsl_matrix_get (QP, i, k) * gsl_matrix_get (x, k, j);
+	    else
+	      y += gsl_matrix_get (Ya, i, k) * gsl_matrix_get (x, k, j);
 	  y = (fabs(y) < Eta) ? 0. : y;
 	  gsl_matrix_set (Y1, i, j, y);
 	}

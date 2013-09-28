@@ -36,6 +36,8 @@ xie.asy     ... plots xi^e versus theta
 xio.asy     ... plots xi^o versus theta
 xiem.asy    ... plots Fourier harmonics of xi^e versus m
 xiom.asy    ... plots Fourier harmonics of xi^o versus m
+vmat.asy    ... plots vacuum matching matrix
+vmatres.asy ... plots residuals of vacuum matching matrix
 
 error       ... calculates optimum wall perturbation 
 error.asy   ... plots total optimum wall perturbation

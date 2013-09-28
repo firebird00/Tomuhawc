@@ -2,9 +2,9 @@
 
 #include "Tomuhawc.h"
 
-// #########################################################
-// Function to calculate eigenfunctions of Ee-matrix at wall
-// #########################################################
+// ########################################################
+// Function to calculate eigenfunctions of Ee-matrix at r=a
+// ########################################################
 void Thawc::CalcEigEea (gsl_matrix *Ee)
 {
   FILE *zfe  = OpenFiler ("Stage3/ZFea.out");

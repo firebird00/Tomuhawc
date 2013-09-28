@@ -19,8 +19,6 @@ int Thawc::Solv (int interactive)
   char *_adapo = "Stage3/adapo.out";
   char *_solne = "Stage3/solne.out";
   char *_solno = "Stage3/solno.out";
-  char *_edgee = "Stage3/Yea.out";
-  char *_edgeo = "Stage3/Yoa.out";
 
   system ("rm Stage3/*.out");
  
@@ -96,6 +94,7 @@ int Thawc::Solv (int interactive)
   dim  = vac + 2*side;
   dim1 = 2*dim;
   dimN = dim1*(dim+vac);
+  printf ("dim = %4d  dim1 = %4d  dimN = %6d\n", dim, dim1, dimN);
 
   mpol = new int[dim];
   for (int i = 0; i < dim; i++)
@@ -110,7 +109,7 @@ int Thawc::Solv (int interactive)
   Nmat = gsl_matrix_alloc (dim,  dim);
   Pmat = gsl_matrix_alloc (dim,  dim);
   Vmat = gsl_matrix_alloc (dim1, dim1);
-  //Vacuum ();
+  Vacuum (interactive);
   if (interactive)
     {
       Couple (rb);
@@ -118,6 +117,8 @@ int Thawc::Solv (int interactive)
     }
   
   gsl_matrix *YY   = gsl_matrix_calloc (dim1, dim+vac);
+  gsl_matrix *Ya   = gsl_matrix_calloc (dim1, dim+vac);
+  gsl_matrix *QP   = gsl_matrix_calloc (dim1, dim+vac);
   gsl_matrix *Psi  = gsl_matrix_calloc (vac,  dim+vac);
   gsl_matrix *dPsi = gsl_matrix_calloc (vac,  dim+vac);
   gsl_matrix *x    = gsl_matrix_calloc (dim,  vac);
@@ -147,7 +148,7 @@ int Thawc::Solv (int interactive)
   double r = r0; step = 0; func = 0; nflag = 0;
   printf ("Initialize tearing parity solution vectors at magnetic axis:\n");
 
-  Launch    (r, YY);
+  Launch (r, YY);
   if (interactive) LogVector (r, YY);
   
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -155,7 +156,7 @@ int Thawc::Solv (int interactive)
   // while performing nfix logarithmically spaced fixups.
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   int nf = (nfix == 0) ? 0 : int ((r1*rb) * double(nfix));
-  Segment_Fixup (r, r1*rb, nf, YY, Psi, dPsi, 1, 0, 0, interactive, _adape, _solne, _edgee);
+  Segment_Fixup (r, r1*rb, nf, YY, Psi, dPsi, 1, 0, interactive, _adape, _solne);
   
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // Integrate tearing parity solution vectors across rational surfaces
@@ -169,7 +170,7 @@ int Thawc::Solv (int interactive)
       // while performing nfix equally spaced fixups
       re = Rres[j] - del;
       nf = (nfix == 0) ? 0 : int ((re - r) * double (nfix));
-      Segment_Fixup (r, re, nf, YY, Psi, dPsi, 0, flg, 0, interactive, _adape, _solne, _edgee);
+      Segment_Fixup (r, re, nf, YY, Psi, dPsi, 0, flg, interactive, _adape, _solne);
  
       // Jump tearing parity solution vectors across jth rational surface
       double q = gsl_spline_eval (Sq,  Rres[j], Aq);
@@ -193,7 +194,9 @@ int Thawc::Solv (int interactive)
   printf ("Integrate tearing parity solution vectors to wall:\n");
  
   nf = (nfix == 0) ? 0 : int ((ra - r) * double (nfix));
-  Segment_Fixup (r, ra, nf, YY, Psi, dPsi, 0, flg, 1, interactive, _adape, _solne, _edgee);
+  Segment_Fixup (r, ra, nf, YY, Psi, dPsi, 0, flg, interactive, _adape, _solne);
+  Edge (YY, Ya, QP, interactive);
+
   printf ("Wall: r/b = %11.4e\n", ra/rb);
   printf ("step = %10d  func = %10d\n", step, func);
   FILE *logfile = OpenFilea ("Stage3/logfile");
@@ -203,12 +206,12 @@ int Thawc::Solv (int interactive)
   // +++++++++++++++++++++++++++++++++
   // Apply boundary conditions at wall
   // +++++++++++++++++++++++++++++++++
-  Boundary (YY, x, interactive);
+  Boundary (Ya, QP, x, interactive);
 
   // ++++++++++++++++++++
   // Calculate Fee-matrix
   // ++++++++++++++++++++
-  CalcFee (Psi, x, Fee, YY);
+  CalcFee (Psi, x, Fee);
 
   // ++++++++++++++++++++
   // Calculate Foe-matrix
@@ -223,7 +226,7 @@ int Thawc::Solv (int interactive)
   // ++++++++++++++++++++++++
   // Calculate eigenfunctions
   // ++++++++++++++++++++++++
-  CalcEigFeea (x);
+  CalcEigFeea (x, Ya);
   CalcEigEea  (Ee);
   if (interactive)
     {
@@ -251,7 +254,7 @@ int Thawc::Solv (int interactive)
       // while performing nfix logarimaically spaced fixups.
       // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       nf = (nfix == 0) ? 0 : int ((r1*rb) * double(nfix));
-      Segment_Fixup (r, r1*rb, nf, YY, Psi, dPsi, 1, 0, 0, interactive, _adapo, _solno, _edgeo);
+      Segment_Fixup (r, r1*rb, nf, YY, Psi, dPsi, 1, 0, interactive, _adapo, _solno);
       
       // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       // Integrate twisting parity solution vectors across rational surfaces
@@ -264,7 +267,7 @@ int Thawc::Solv (int interactive)
 	  // while performing nfix equally spaced fixups.
 	  re = Rres[j] - del;
 	  nf = (nfix == 0) ? 0 : int ((re - r) * double (nfix));
-	  Segment_Fixup (r, re, nf, YY, Psi, dPsi, 0, flg, 0, interactive, _adapo, _solno, _edgeo);
+	  Segment_Fixup (r, re, nf, YY, Psi, dPsi, 0, flg, interactive, _adapo, _solno);
 	  
 	  // Jump tearing parity solution vectors across jth rational surface
 	  double q = gsl_spline_eval (Sq,  Rres[j], Aq);
@@ -290,8 +293,10 @@ int Thawc::Solv (int interactive)
       printf ("Integrate twisting parity solution vectors to wall:\n");
       
       nf = (nfix == 0) ? 0 : int ((ra - r) * double (nfix));
-      Segment_Fixup (r, ra, nf, YY, Psi, dPsi, 0, flg, 1, interactive, _adapo, _solno, _edgeo);
-       printf ("Wall: r/b = %11.4e\n", ra/rb);
+      Segment_Fixup (r, ra, nf, YY, Psi, dPsi, 0, flg, interactive, _adapo, _solno);
+      Edge (YY, Ya, QP, interactive);
+
+      printf ("Wall: r/b = %11.4e\n", ra/rb);
       printf ("step = %10d  func = %10d\n", step, func);
       logfile = OpenFilea ("Stage3/logfile");
       fprintf (logfile, "step = %10d  func = %10d\n", step, func);
@@ -300,12 +305,12 @@ int Thawc::Solv (int interactive)
       // +++++++++++++++++++++++++++++++++
       // Apply boundary conditions at wall
       // +++++++++++++++++++++++++++++++++
-      Boundary (YY, x, interactive);
+      Boundary (Ya, QP, x, interactive);
       
       // ++++++++++++++++++++
       // Calculate Foo-matrix
       // ++++++++++++++++++++
-      CalcFoo (Psi, x, Foo, YY);
+      CalcFoo (Psi, x, Foo);
       
       // ++++++++++++++++++++
       // Calculate Feo-matrix
@@ -320,7 +325,7 @@ int Thawc::Solv (int interactive)
       // ++++++++++++++++++++++++
       // Calculate eigenfunctions
       // ++++++++++++++++++++++++
-      CalcEigFooa (x);
+      CalcEigFooa (x, Ya);
       CalcEigEoa  (Eo);
       if (interactive)
 	{
@@ -373,7 +378,8 @@ int Thawc::Solv (int interactive)
   gsl_matrix_free (dmat); gsl_matrix_free (emat);
   gsl_matrix_free (Lmat); gsl_matrix_free (Mmat);
   gsl_matrix_free (Nmat); gsl_matrix_free (Pmat);
-  gsl_matrix_free (Vmat);
+  gsl_matrix_free (Vmat); gsl_matrix_free (Ya);
+  gsl_matrix_free (QP);
   
   delete[] mpol;
 

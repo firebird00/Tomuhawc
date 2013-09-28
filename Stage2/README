@@ -59,7 +59,11 @@ m1p.asy    ... plots derivative of M1 profile
 m3p.asy    ... plots derivative of M3 profile
 m4p.asy    ... plots derivative of M4 profile
 
-pmat.asy   ... plots P matrix
-qmat.asy   ... plots Q matrix
-ppmat.asy  ... plots P' matrix
-qqmat.asy  ... plots Q' matrix
+pc.asy   ... plots Pc matrix
+qc.asy   ... plots Qc matrix
+pcp.asy  ... plots Pc' matrix
+qcp.asy  ... plots Qc' matrix
+ps.asy   ... plots Ps matrix
+qs.asy   ... plots Qs matrix
+psp.asy  ... plots Ps' matrix
+qsp.asy  ... plots Qs' matrix

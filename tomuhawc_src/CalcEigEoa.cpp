@@ -2,9 +2,9 @@
 
 #include "Tomuhawc.h"
 
-// #########################################################
-// Function to calculate eigenfunctions of Eo-matrix at wall
-// #########################################################
+// ########################################################
+// Function to calculate eigenfunctions of Eo-matrix at r=a
+// ########################################################
 void Thawc::CalcEigEoa (gsl_matrix *Eo)
 {
   FILE *zfo  = OpenFiler ("Stage3/ZFoa.out");

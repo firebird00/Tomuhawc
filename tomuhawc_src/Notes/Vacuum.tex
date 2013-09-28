@@ -68,9 +68,9 @@ where
 \end{equation}
 Follows that
 \begin{align}
-\delta\hat{J}_\eta &= [\delta \hat{B}_\phi]_{\mu_{w-}}^{\mu^{w+}} = \frac{n}{R}\,[\hat{V}]_{\mu_{w-}}^{\mu_{w+}},\\[0.5ex]
+\delta\hat{J}_\eta &= [\delta \hat{B}_\phi]_{\mu_{w-}}^{\mu_{w+}} = \frac{n}{R}\,[\hat{V}]_{\mu_{w-}}^{\mu_{w+}},\\[0.5ex]
 \delta\hat{J}_\mu &=0,\\[0.5ex]
-\delta\hat{J}_\phi &=  -[\delta \hat{B}_\eta]_{\mu_{w-}}^{\mu^{w+}} =- \frac{{\rm i}}{h}\left[\frac{\partial\hat{V}}{\partial\eta}\right]_{\mu_{w-}}^{\mu_{w+}}.
+\delta\hat{J}_\phi &=  -[\delta \hat{B}_\eta]_{\mu_{w-}}^{\mu_{w+}} =- \frac{{\rm i}}{h}\left[\frac{\partial\hat{V}}{\partial\eta}\right]_{\mu_{w-}}^{\mu_{w+}}.
 \end{align}
 Of course,
 \begin{equation}
@@ -146,30 +146,23 @@ Thus, the torque on the plasma is $T_\phi = -\hat{T}_\phi$, giving
 T_\phi =2\,n\,\pi^2\,(-1)^n\sum_m {\rm Im}(q_m\,p_m^\ast)\,\frac{\Gamma(m+1/2+n)}{\Gamma(m+1/2-n)}.
 \end{equation}
 
-\subsection{Matching to Vacuum Solution}
+\subsection{Vacuum Solution - I}
 In vacuum the solution vector $\tilde{\bf Y}_k^e$ has the expansion
 \begin{equation}
-\hat{V}_k^e = \sum_j p_{k,j}^e\,P_j(\mu,\eta),
+\hat{V}_k^e = \sum_l\left[p_{k,l}^e\,P_l(\mu,\eta) + q_{k,l}^e\,Q_l(\mu,\eta)\right],
 \end{equation}
 where
-\begin{equation}
-P_j(\mu,\eta) =(\cosh\mu-\cos\eta)^{1/2}\,P_{m_j-1/2}^n(\cosh\mu)\,\cos(m_j\,\eta).
-\end{equation}
+\begin{align}
+P_l(\mu,\eta) &=(\cosh\mu-\cos\eta)^{1/2}\,P_{m_l-1/2}^n(\cosh\mu)\,\cos(m_l\,\eta),\\[0.5ex]
+Q_l(\mu,\eta) &=(\cosh\mu-\cos\eta)^{1/2}\,Q_{m_l-1/2}^n(\cosh\mu)\,\cos(m_l\,\eta).
+\end{align}
 Likewise, the solution vector $\tilde{\bf Y}_k^o$ has the expansion
 \begin{equation}
-\hat{V}_k^o = \sum_j p_{k,j}^o\,P_j(\eta,\mu).
+\hat{V}_k^o = \sum_l \left[p_{k,l}^o\,P_l(\eta,\mu)+q_{k,l}^o\,Q_l(\eta,\mu)\right].
 \end{equation}
 Finally, the $\tilde{\bf Y}^x$ solution vector has the expansion
 \begin{equation}
-\hat{V}^x = \sum_j \left[p_j^x\,P_j(\eta,\mu)+ q_j^x\,Q_j(\eta,\mu)\right],
-\end{equation}
-where
-\begin{equation}
-Q_j(\mu,\eta) =(\cosh\mu-\cos\eta)^{1/2}\,Q_{m_j-1/2}^n(\cosh\mu)\,\cos(m_j\,\eta).
-\end{equation}
-The vacuum error-field has the expansion
-\begin{equation}
-\hat{V}^v = \sum_j q_j^x\,Q_j(\eta,\mu).
+\hat{V}^x = \sum_l \left[p_l^x\,P_l(\eta,\mu)+ q_l^x\,Q_l(\eta,\mu)\right],
 \end{equation}
 
 The
@@ -180,28 +173,30 @@ is
 \end{equation}
 and has the expansion
 \begin{equation}
-\hat{V} = \sum_k\left({\mit\Psi}_k^e\,\hat{V}_k^e + {\mit\Psi}_k^o\,\hat{V}_k^o\right) + \hat{V}_x.
+\hat{V} = \sum_k\left({\mit\Psi}_k^e\,\hat{V}_k^e + {\mit\Psi}_k^o\,\hat{V}_k^o\right) + \hat{V}^x.
 \end{equation}
 It follows that
 \begin{equation}
-\hat{V} = \sum_j (p_j\,P_j+q_j\,Q_j),
+\hat{V} = \sum_l (p_l\,P_l+q_l\,Q_l),
 \end{equation}
 where 
 \begin{align}
-p_j &= p_j^x + \sum_k({\mit\Psi}_k^e\,p_{k,j}^e+ {\mit\Psi}_k^o\,p_{k,j}^o),\\[0.5ex]
-q_j&= q_j^x.
+p_l &= p_l^x + \sum_k({\mit\Psi}_k^e\,p_{k,l}^e+ {\mit\Psi}_k^o\,p_{k,l}^o),\\[0.5ex]
+q_l&= q_l^x + \sum_k({\mit\Psi}_k^e\,q_{k,l}^e+ {\mit\Psi}_k^o\,q_{k,l}^o).
 \end{align}
 Thus, 
 \begin{equation}
-{\rm Im}(q_j\,p_j^\ast)={\rm Im}\sum_k({\mit\Psi}_k^{e\,\ast}\,p_{k,j}^{e\,\ast}\,q_j^x + {\mit\Psi}_k^{o\,\ast}\,p_{k,j}^{o\,\ast}\,q_j^x).
+{\rm Im}(q_l\,p_l^\ast)={\rm Im}\sum_k\left[{\mit\Psi}_k^{e\,\ast}\,(p_{k,l}^{e\,\ast}\,q_l^x - q_{k,l}^{e\,\ast}\,p_l^x) + {\mit\Psi}_k^{o\,\ast}\,(p_{k,l}^{o\,\ast}\,q_l^x-q_{k,l}^{o\,\ast}\,p_l^x)\right].
 \end{equation}
 Here, we have assumed that
-\begin{equation}
-{\rm Im}(p_j^{x\,\ast}\,q_j^x)=0.
-\end{equation}
+\begin{align}
+{\rm Im}\,(p_{k,l}^{e\,\ast}\,q_{k,l}^e)&=0,\\[0.5ex]
+{\rm Im}\,( p_{k,l}^{o\,\ast}\,q_{k,l}^o)&=0,\\[0.5ex]
+{\rm Im}\,(p_l^{x\,\ast}\,q_l^x)&=0.
+\end{align}
 Thus, 
 \begin{equation}
-T_\phi = 2\,n\,\pi^2\,(-1)^n\,{\rm Im}\sum_k\sum_j\,({\mit\Psi}_k^{e\,\ast}\,p_{k,j}^{e\,\ast}\,q_j^x + {\mit\Psi}_k^{o\,\ast}\,p_{k,j}^{o\,\ast}\,q_j^x)\frac{\Gamma(m_j+1/2+n)}{\Gamma(m_j+1/2-n)}.
+T_\phi = 2\,n\,\pi^2\,(-1)^n\,{\rm Im}\sum_{k,l}\left[{\mit\Psi}_k^{e\,\ast}\,(p_{k,l}^{e\,\ast}\,q_l^x - q_{k,l}^{e\,\ast}\,p_l^x) + {\mit\Psi}_k^{o\,\ast}\,(p_{k,l}^{o\,\ast}\,q_l^x-q_{k,l}^{o\,\ast}\,p_l^x)\right]\frac{\Gamma(m_l+1/2+n)}{\Gamma(m_l+1/2-n)}.
 \end{equation}
 However,
 \begin{equation}
@@ -209,18 +204,91 @@ T_\phi = - 2\,n\,\pi^2\,{\rm Im}\sum_k({\mit\Psi}_k^{e\,\ast}\chi_k^e + {\mit\Ps
 \end{equation}
 It follows that
 \begin{align}
-\chi_k^e &= (-1)^{n+1}\sum_j p_{k,j}^{e\,\ast}\,q_j^x\,\frac{\Gamma(m_j+1/2+n)}{\Gamma(m_j+1/2-n)},\\[0.5ex]
-\chi_k^o &= (-1)^{n+1}\sum_j p_{k,j}^{o\,\ast}\,q_j^x\,\frac{\Gamma(m_j+1/2+n)}{\Gamma(m_j+1/2-n)}.
+\chi_k^e &= (-1)^{n+1}\sum_l (p_{k,l}^{e\,\ast}\,q_l^x- q_{k,l}^{e\,\ast}\,p_l^x) \,\frac{\Gamma(m_l+1/2+n)}{\Gamma(m_l+1/2-n)},\\[0.5ex]
+\chi_k^o &= (-1)^{n+1}\sum_l (p_{k,l}^{o\,\ast}\,q_l^x-q_{k,l}^{o\,\ast}\,p_l^x)\,\frac{\Gamma(m_l+1/2+n)}{\Gamma(m_l+1/2-n)}.
 \end{align}
 
-Finally, let
+\subsection{Vacuum Solution - II}
+In vacuum,
 \begin{equation}
-\hat{V}^v = \sum_j q_j^v\, (-1)^{n+1}\,\frac{\Gamma(m_j+1/2-n)}{\Gamma(m_j+1/2+n)}\,Q_j(\mu,\eta).
+V_j = \frac{Z_j}{m_j-n\,q},
 \end{equation}
-It follows that
+and
 \begin{align}
-\chi_k^e &= \sum_j p_{k,j}^{e\,\ast}\,q_j^v,\\[0.5ex]
-\chi_k^o &= \sum_j p_{k,j}^{o\,\ast}\,q_j^v.
+r\,\frac{d\psi_j}{dr} &= \sum_j\left(L_{jj'}\,V_{j'} + \hat{M}_{jj'}\,\hat{\psi}_{j'}\right),\\[0.5ex]
+r\,\frac{dV_j}{dr} &= \sum_j\left(\hat{N}_{jj'}\,V_{j'} + \hat{P}_{jj'}\,\psi_{j'}\right).
 \end{align}
+Here,
+\begin{align}
+\hat{M}_{jj'} &=\frac{M_{jj'}}{(m_{j'}-n\,q)}=-m_j\,M_{jj'}^{(6)},\\[0.5ex]
+\hat{N}_{jj'} &=\frac{N_{jj'}}{(m_j-n\,q)}= -m_{j'}\,M_{jj'}^{(6)},\\[0.5ex]
+\hat{P}_{jj'} &=\frac{P_{jj'}}{(m_j-n\,q)\,(m_{j'}-n\,q)}= M^{(2)}_{jj'}.
+\end{align}
+Finally,
+\begin{equation}
+T_\phi = -2\,n\,\pi^2\,{\rm Im}\sum_j V_j^\ast\,\psi_j.
+\end{equation}
+
+Let the solution vectors $\tilde{\bf Y}_k^e$ have the components $\psi_{k,j}^e$ and $V_{k,j}^e$. 
+Let the solution vectors $\tilde{\bf Y}_k^o$ have the components $\psi_{k,j}^o$ and $V_{k,j}^o$. 
+Finally, let the solution vector ${\bf Y}^x$ have the components $\psi_j^x$ and $V_j^x$. 
+Thus, the general solution vector,
+\begin{equation}
+{\bf Y} = \sum_k ({\mit\Psi}_k^e\,{\bf Y}_k^e + {\mit\Psi}_k^o\,{\bf Y}_k^o) + {\bf Y}^x,
+\end{equation}
+has the components $\psi_j$ and $V_j$, where
+\begin{align}
+\psi_j &=  \psi_j^x + \sum_k({\mit\Psi}_k^e\,\psi_{k,j}^e+ {\mit\Psi}_k^o\,\psi_{k,j}^o),\\[0.5ex]
+V_j&= V_j^x + \sum_k({\mit\Psi}_k^e\,V_{k,j}^e+ {\mit\Psi}_k^o\,V_{k,j}^o).
+\end{align}
+It follows that
+\begin{equation}
+T_\phi = -2\,n\,\pi^2\,{\rm Im}\sum_{k,j}\left[{\mit\Psi}_{k,j}^{e\,\ast}\,(V_{k,j}^{e\,\ast}\,\psi_j^x - \psi_{k,j}^{e\,\ast}\,V_j^x)+ {\mit\Psi}_{k,j}^{o\,\ast}\,(V_{k,j}^{o\,\ast}\,\psi_j^x - \psi_{k,j}^{o\,\ast}\,V_j^x)\right],
+\end{equation}
+where we have assumed that
+\begin{align}
+{\rm Im}\left(V_{k,l}^{e\,\ast}\,\psi_{k,l}^e\right)&=0,\\[0.5ex]
+{\rm Im}\left(V_{k,l}^{o\,\ast}\,\psi_{k,l}^o\right)&=0,\\[0.5ex]
+{\rm Im}\left(V_l^{x\,\ast}\,\psi_l^x\right)&=0.
+\end{align}
+Hence,
+\begin{align}
+\chi_k^e &= \sum_j\left(V_{k,j}^{e\,\ast}\,\psi_j^x - \psi_{k,j}^{e\,\ast}\,V_j^x\right)=\sum_j\left(Z_{k,j}^{e\,\ast}\,\xi_{j}^x
+-\psi_{k,j}^{e\,\ast}\,V_{j}^x\right) ,\\[0.5ex]
+\chi_k^o &= \sum_j\left(V_{k,j}^{o\,\ast}\,\psi_j^x - \psi_{k,j}^{o\,\ast}\,V_j^x\right)=\sum_j\left(Z_{k,j}^{o\,\ast}\,\xi_{j}^x
+-\psi_{k,j}^{o\,\ast}\,V_{j}^x\right),
+\end{align}
+where
+\begin{align}
+Z_{k,j}^{e,o} &= V_{k,j}^{e,o}\,(m_j-n\,q),\\[0.5ex]
+\xi_{j}^x &= \frac{\psi_{j}^x}{m_j-n\,q}.
+\end{align}
+
+\subsection{Vacuum Matching}
+It follows from the analysis in the previous two sections that
+\begin{equation}
+p_{k,l}^{e,o\,\ast}= (-1)^{n+1}\,\frac{\Gamma(m_l+1/2-n)}{\Gamma(m_l+1/2+n)}\sum_{j} \left(V_{k,j}^{e,o\,\ast}\,\psi_{j,l}^q
+-\psi_{k,j}^{e,o\,\ast}\,V_{j,l}^q\right),
+\end{equation}
+where the $V_{j,l}^q$ and $\psi_{j,l}^q$ are the components of $Q_l$. Likewise,
+\begin{equation}
+q_{k,l}^{e,o\,\ast}= -(-1)^{n+1}\,\frac{\Gamma(m_l+1/2-n)}{\Gamma(m_l+1/2+n)}\sum_{j} \left(V_{k,j}^{e,o\,\ast}\,\psi_{j,l}^p
+-\psi_{k,j}^{e,o\,\ast}\,V_{j,l}^p\right),
+\end{equation}
+where the $V_{j,l}^p$ and $\psi_{j,l}^p$ are the components of $P_l$. We can also write
+\begin{align}
+p_{k,l}^{e,o\,\ast}&= (-1)^{n+1}\,\frac{\Gamma(m_l+1/2-n)}{\Gamma(m_l+1/2+n)}\sum_{j} \left(Z_{k,j}^{e,o\,\ast}\,\xi_{j,l}^q
+-\psi_{k,j}^{e,o\,\ast}\,V_{j,l}^q\right),\\[0.5ex]
+q_{k,l}^{e,o\,\ast}&= -(-1)^{n+1}\,\frac{\Gamma(m_l+1/2-n)}{\Gamma(m_l+1/2+n)}\sum_{j} \left(Z_{k,j}^{e,o\,\ast}\,\xi_{j,l}^p
+-\psi_{k,j}^{e,o\,\ast}\,V_{j,l}^p\right),
+\end{align}
+where
+\begin{equation}
+\xi^{q,p}_{j,l} = \frac{\psi_{j,l}^{q,p}}{m_j-n\,q},
+\end{equation}
+and
+\begin{equation}
+\sum_{j'} P_{jj'}\,\xi_{j',l}^{q,p} = (m_j-n\,q)\,r\,\frac{d V_{j,l}^{q,p}}{dr}-\sum_{j'} N_{jj'}\,V_{j',l}^{q,p}.
+\end{equation}
 
 \end{document}

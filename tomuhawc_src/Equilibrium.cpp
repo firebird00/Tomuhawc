@@ -361,15 +361,17 @@ void Thawc::Equilibrium (int sw, int interactive)
       gsl_spline_init (SM4P, r, M4P, nint);
 
       // Read in vacuum data
-      Ptor0 = gsl_matrix_alloc (diag+1, diag+1);
-      Qtor0 = gsl_matrix_alloc (diag+1, diag+1);
-      Ptor1 = gsl_matrix_alloc (diag+1, diag+1);
-      Qtor1 = gsl_matrix_alloc (diag+1, diag+1);
-      Pm    = new double [diag+1];
-      Qm    = new double [diag+1];
+      Pc    = gsl_matrix_alloc (diag+1, diag+1);
+      Qc    = gsl_matrix_alloc (diag+1, diag+1);
+      dPcdr = gsl_matrix_alloc (diag+1, diag+1);
+      dQcdr = gsl_matrix_alloc (diag+1, diag+1);
+      Ps    = gsl_matrix_alloc (diag+1, diag+1);
+      Qs    = gsl_matrix_alloc (diag+1, diag+1);
+      dPsdr = gsl_matrix_alloc (diag+1, diag+1);
+      dQsdr = gsl_matrix_alloc (diag+1, diag+1);
     
       double val;
-      file = OpenFiler ("Stage2/P.out");
+      file = OpenFiler ("Stage2/Pc.out");
       for (int i = 0; i <= diag; i++)
 	for (int j = 0; j <= diag; j++)
 	  {
@@ -377,15 +379,15 @@ void Thawc::Equilibrium (int sw, int interactive)
 		    
 	    if (err == EOF)
 	      {
-		printf ("Error: Cannot read P.out\n");
+		printf ("Error: Cannot read Pc.out\n");
 		exit (1);
 	      }
 
-	    gsl_matrix_set (Ptor0, i, j, val);
+	    gsl_matrix_set (Pc, i, j, val);
 	  }	
       fclose (file);
 
-      file = OpenFiler ("Stage2/Q.out");
+      file = OpenFiler ("Stage2/Qc.out");
       for (int i = 0; i <= diag; i++)
 	for (int j = 0; j <= diag; j++)
 	  {
@@ -393,15 +395,15 @@ void Thawc::Equilibrium (int sw, int interactive)
 		    
 	    if (err == EOF)
 	      {
-		printf ("Error: Cannot read Q.out\n");
+		printf ("Error: Cannot read Qc.out\n");
 		exit (1);
 	      }
 
-	    gsl_matrix_set (Qtor0, i, j, val);
+	    gsl_matrix_set (Qc, i, j, val);
 	  }	
       fclose (file);
 
-      file = OpenFiler ("Stage2/PP.out");
+      file = OpenFiler ("Stage2/dPcdr.out");
       for (int i = 0; i <= diag; i++)
 	for (int j = 0; j <= diag; j++)
 	  {
@@ -409,15 +411,15 @@ void Thawc::Equilibrium (int sw, int interactive)
 		    
 	    if (err == EOF)
 	      {
-		printf ("Error: Cannot read PP.out\n");
+		printf ("Error: Cannot read dPcdr.out\n");
 		exit (1);
 	      }
 
-	    gsl_matrix_set (Ptor1, i, j, val);
+	    gsl_matrix_set (dPcdr, i, j, val);
 	  }	
       fclose (file);
 
-      file = OpenFiler ("Stage2/QQ.out");
+      file = OpenFiler ("Stage2/dQcdr.out");
       for (int i = 0; i <= diag; i++)
 	for (int j = 0; j <= diag; j++)
 	  {
@@ -425,21 +427,76 @@ void Thawc::Equilibrium (int sw, int interactive)
 		    
 	    if (err == EOF)
 	      {
-		printf ("Error: Cannot read QQ.out\n");
+		printf ("Error: Cannot read dQcdr.out\n");
 		exit (1);
 	      }
 
-	    gsl_matrix_set (Qtor1, i, j, val);
+	    gsl_matrix_set (dQcdr, i, j, val);
 	  }	
       fclose (file);
 
-      file = OpenFiler ("Stage2/PQm.out");
+      file = OpenFiler ("Stage2/Ps.out");
       for (int i = 0; i <= diag; i++)
-	if (fscanf (file, "%lf %lf", &Pm[i], &Qm[i]) != 2)
+	for (int j = 0; j <= diag; j++)
 	  {
-	    printf ("Error: Cannot read PQm.out\n");
-	    exit (1);
-	  }
+	    err = fscanf (file, "%lf", &val);
+		    
+	    if (err == EOF)
+	      {
+		printf ("Error: Cannot read Ps.out\n");
+		exit (1);
+	      }
+
+	    gsl_matrix_set (Ps, i, j, val);
+	  }	
+      fclose (file);
+
+      file = OpenFiler ("Stage2/Qs.out");
+      for (int i = 0; i <= diag; i++)
+	for (int j = 0; j <= diag; j++)
+	  {
+	    err = fscanf (file, "%lf", &val);
+		    
+	    if (err == EOF)
+	      {
+		printf ("Error: Cannot read Qs.out\n");
+		exit (1);
+	      }
+
+	    gsl_matrix_set (Qs, i, j, val);
+	  }	
+      fclose (file);
+
+      file = OpenFiler ("Stage2/dPsdr.out");
+      for (int i = 0; i <= diag; i++)
+	for (int j = 0; j <= diag; j++)
+	  {
+	    err = fscanf (file, "%lf", &val);
+		    
+	    if (err == EOF)
+	      {
+		printf ("Error: Cannot read dPsdr.out\n");
+		exit (1);
+	      }
+
+	    gsl_matrix_set (dPsdr, i, j, val);
+	  }	
+      fclose (file);
+
+      file = OpenFiler ("Stage2/dQsdr.out");
+      for (int i = 0; i <= diag; i++)
+	for (int j = 0; j <= diag; j++)
+	  {
+	    err = fscanf (file, "%lf", &val);
+		    
+	    if (err == EOF)
+	      {
+		printf ("Error: Cannot read dQsdr.out\n");
+		exit (1);
+	      }
+
+	    gsl_matrix_set (dQsdr, i, j, val);
+	  }	
       fclose (file);
         
       // +++++++++++++++++++++++++++++++++++++
@@ -529,9 +586,10 @@ void Thawc::Equilibrium (int sw, int interactive)
       delete[] SM6;  delete[] SM7;  delete[] AM8;  delete[] AM9;  delete[] SM8;  delete[] SM9;
       delete[] AM1P; delete[] AM3P; delete[] AM4P; delete[] SM1P; delete[] SM3P; delete[] SM4P;
 
-      gsl_matrix_free (Ptor0); gsl_matrix_free (Qtor0); 
-      gsl_matrix_free (Ptor1); gsl_matrix_free (Qtor1);
-      delete[] Pm; delete[] Qm;
+      gsl_matrix_free (Pc);    gsl_matrix_free (Qc); 
+      gsl_matrix_free (dPcdr); gsl_matrix_free (dQcdr);
+      gsl_matrix_free (Ps);    gsl_matrix_free (Qs); 
+      gsl_matrix_free (dPsdr); gsl_matrix_free (dQsdr);
     }
 }
 

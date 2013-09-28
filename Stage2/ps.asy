@@ -3,7 +3,7 @@ import palette;
      
 size(500,500,Aspect);
      
-file    in = input("QQ.out").line();
+file    in = input("Ps.out").line();
 real[][] a = in.dimension (0,0);
      
 int m = (int)(a[0].length);
@@ -13,7 +13,7 @@ for (int i = 0; i < m; ++i)
 for (int j = 0; j < m; ++j)
 b[i][j] = -fabs(a[i][j]);
 
-pen[] Palette = Grayscale();
+pen[] Palette = BWRainbow();
 
 image (b, Automatic, (0,0), (m,m), Palette);
 

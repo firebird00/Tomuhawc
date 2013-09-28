@@ -21,8 +21,8 @@ void Thawc::CalcEigEe (gsl_matrix *Ee)
 
   FILE   *pfe = OpenFiler ("Stage3/PsiFe.out");
   FILE   *zfe = OpenFiler ("Stage3/ZFe.out");
-  FILE   *pue = OpenFile ("Stage3/PsiUe.out");
-  FILE   *zue = OpenFile ("Stage3/ZUe.out");
+  FILE   *pue = OpenFile  ("Stage3/PsiUe.out");
+  FILE   *zue = OpenFile  ("Stage3/ZUe.out");
   double *rr  = new double[npts];
   for (int l = 0; l < npts; l++)
     {

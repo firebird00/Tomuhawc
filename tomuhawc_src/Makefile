@@ -8,7 +8,7 @@ OBJECT 		= main.o Tomuhawc.o Solv.o Boundary.o CalcFee.o CalcFoo.o CalcFeo.o\
 		ZeroFind.o Fixup.o Launch.o Launch1.o Segment_Fixup.o Segment.o Segment1.o Rhs.o\
 		Couple.o Jump.o Jump1.o L1P1T1.o L1kP1k.o Log.o CalcEe.o CalcEo.o CalcEigEo.o\
 		CalcEigFoo.o CalcPsiMax.o CalcEigFeea.o CalcEigEea.o CalcEigFooa.o CalcEigEoa.o\
-		Vacuum.o
+		Vacuum.o Edge.o
 
 # Linking everything:
 

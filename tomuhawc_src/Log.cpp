@@ -74,6 +74,55 @@ void Thawc::LogMatrices ()
   fclose (file);
 }
 
+// #############################
+// Function to log vacuum matrix
+// #############################
+void Thawc::LogVmat ()
+{
+  FILE *file = OpenFile ("Stage3/Vmat.out");
+  for (int i = 0; i < dim1; i++)
+    {
+      for (int j = 0; j < dim1; j++)
+	fprintf(file, "%e ", -fabs(gsl_matrix_get (Vmat, i, j)));
+      fprintf (file, "\n");
+    }
+  fclose (file);
+
+  gsl_matrix *Mat = gsl_matrix_alloc (dim1, dim1);
+  double *x = new double [dim1];
+  double *y = new double [dim1];
+  for (int i = 0; i < dim1; i++)
+    for (int j = 0; j < dim1; j++)
+      {
+	for (int k = 0; k < dim1; k++)
+	  {
+	    x[k] = gsl_matrix_get (Vmat, k, i);
+	    y[k] = gsl_matrix_get (Vmat, k, j);
+	  }
+
+	double sum = 0.;
+	for (int k = 0; k < dim; k++)
+	  sum += (x[k]*y[dim+k] - x[dim+k]*y[k]) * (double (mpol[k]) - double (ntor) * qa);
+
+	if (i - j == dim || j - i == dim)
+	  sum = 0.;
+
+	gsl_matrix_set (Mat, i, j, sum);
+      }
+
+  file = OpenFile ("Stage3/Vmatres.out");
+  for (int i = 0; i < dim1; i++)
+    {
+      for (int j = 0; j < dim1; j++)
+	fprintf (file, "%e ", -fabs (gsl_matrix_get (Mat, i, j)));
+      fprintf (file, "\n");
+    }	
+  fclose (file);
+
+  gsl_matrix_free (Mat);
+  delete[] x; delete[] y;
+}
+
 // #########################################
 // Function to log multiple solution vectors
 // #########################################

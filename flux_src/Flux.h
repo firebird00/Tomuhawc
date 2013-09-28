@@ -169,6 +169,10 @@ private:
   double ToroidalP (int m, int n, double z);
   // Calculate toroidal ring function
   double ToroidalQ (int m, int n, double z);
+  // Calculate derivative of toroidal ring function
+  double ToroidalPp (int m, int n, double z);
+  // Calculate derivative of toroidal ring function
+  double ToroidalQp (int m, int n, double z);
 
   // Interpolate Psi on uniform 2D grid
   double InterpolatePsi (double RR, double ZZ, int order);

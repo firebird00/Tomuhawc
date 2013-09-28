@@ -18,11 +18,9 @@
 //                                            j     .. index of small solutions
 //                                                      launched from rational surfaces 
 // flag                  .. truncation error flag
-// edge                  .. set if rx is wall radius
 // interactive           .. set if in iteractive mode
 // _adap                 .. name of adaptive step monitor file
 // _soln                 .. name of solution file
-// _edge                 .. name of edge data file
 //
 // side                  .. number of sideband harmonics
 // vac                   .. total number of rational surfaces (including vacuum surfaces)
@@ -33,8 +31,8 @@
 //
 // ######################################################################################
 void Thawc::Segment (double &r, double rx, gsl_matrix *YY, 
-		     int flag, int edge, int interactive,
-		     char *_adap, char *_soln, char *_edge)
+		     int flag, int interactive,
+		     char *_adap, char *_soln)
 {
   double *Y = new double[dimN];
   
@@ -42,7 +40,7 @@ void Thawc::Segment (double &r, double rx, gsl_matrix *YY,
     for (int k = 0; k < dim1; k++)
       Y[dim1*i+k] = gsl_matrix_get (YY, k, i);
   
-  Segment1 (r, rx, Y, flag, edge, interactive, _adap, _soln, _edge);
+  Segment1 (r, rx, Y, flag, interactive, _adap, _soln);
   
   for (int i = 0; i < dim+vac; i++)
     for (int k = 0; k < dim1; k++)

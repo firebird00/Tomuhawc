@@ -6,20 +6,9 @@
 // Function to calculate Foo-matrix
 //
 // Psi(vac, dim+vac) .. coefficient of large solution
-//  Psi(i, j)                         ... coefficient at ith rational surface due to jth solution
+//  Psi(i, j)           ... coefficient at ith rational surface due to jth solution
 // x(dim, vac)       .. boundary condition vector
 // Foo(vac, vac)     .. Foo matrix
-// YY(dim1, dim+vac) .. solution vector
-//  YY(i=0,  dim -1;k=0,dim-1)        ... psi: i     .. poloidal harmonic index
-//  YY(i=dim,dim1-1;k=0,dim-1)        ... Z  : i-dim .. poloidal harmomic index 
-//                                             k     .. index of independent solutions
-//                                                       launched from axis
-//  YY(i=0,  dim -1;j=dim,dim+vac-1)  ... psi: i     .. poloidal harmonic index
-//  YY(i=dim,dim1-1;j=dim,dim+vac-1)  ... Z  : i-dim .. poloidal harmonic index
-//                                             j     .. index of small solutions
-//                                                       launched from rational surfaces
-// Boundary condition:
-// Sum_k = 0,dim-1 YY(i, k) * x (k, j) = - YY(i, dim+j) for i = 0,dim-1 and j = 0,vac-1
 //
 // side                  .. number of sideband harmonics
 // vac                   .. total number of rational surfaces (including vacuum surfaces)
@@ -28,7 +17,7 @@
 // dim1 = 2*dim          .. dimension of single solution vector 
 //
 // ##############################################################################################
-void Thawc::CalcFoo (gsl_matrix *Psi, gsl_matrix *x, gsl_matrix *Foo, gsl_matrix *YY)
+void Thawc::CalcFoo (gsl_matrix *Psi, gsl_matrix *x, gsl_matrix *Foo)
 {
   for (int j = 0; j < vac; j++)
     {
